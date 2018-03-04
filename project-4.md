@@ -1,16 +1,14 @@
-# IPv6 AS-Path Inflation 
+# IPv6 AS-Path Inflation
 
-This project consists in analyzing the AS-path inflation between IPv4 and IPv6 paths in the current DFZ routing table.
+This project consists in analyzing the path inflation between IPv4 and IPv6 paths in the Middle East (MENOG region).
 
 ## Features
-* Lebanon statistics
 * Global statistics
-* Changes for the ten past years
-* Satellite providers
+* Changes for the three past years
 
 ## Tools and Data
-* AS neighbors from RIPE Stat or bgp.potaroo.net
+* RIPE Atlas
 * Plot libraries
 
 ## Example
-http://internet-today.lahoud.fr/routing-report.html
+http://internet-today.lahoud.fr/as-graph-ipv6.html
