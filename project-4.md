@@ -1,6 +1,6 @@
-# International ISPs in the Middle East
+# IPv6 AS-Path Inflation 
 
-This project consists in analyzing the international ISPs for the Middle East (MENOG region).
+This project consists in analyzing the AS-path inflation between IPv4 and IPv6 paths in the current DFZ routing table.
 
 ## Features
 * Lebanon statistics
