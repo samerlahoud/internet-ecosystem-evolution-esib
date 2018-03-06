@@ -6,7 +6,8 @@ This project consists in analyzing the international ISPs for the Middle East (M
 * Lebanon statistics
 * Global statistics
 * Changes for the ten past years
-* Satellite providers
+* Satellite providers in Lebanon
+* Latency comparison for different international ISPs
 
 ## Tools and Data
 * AS neighbors from RIPE Stat or bgp.potaroo.net
