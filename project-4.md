@@ -4,6 +4,8 @@ This project consists in analyzing the path inflation between IPv4 and IPv6 path
 
 ## Features
 * Global statistics
+* Inflation in the number of hops
+* Inflation in the AS path 
 * Changes for the three past years
 
 ## Tools and Data
