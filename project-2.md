@@ -5,7 +5,8 @@ This project consists in analyzing the stability of the BGP routing in the Middl
 ## Features
 * Most active prefixes
 * Most active AS
-* Correlation of the  activity and the size
+* Correlation of the activity and the size
+* Correlation of the activity and the current outage
 * Update/Withdraw analysis
 
 ## Tools and Data
