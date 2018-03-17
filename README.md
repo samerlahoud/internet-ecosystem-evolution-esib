@@ -1,4 +1,4 @@
-# ESIB Course on Internet Ecosystem and Evolution
+# ESIB USJ EEIE-S4 Course
 
 This repository contains the contributions of the student projects in the course on Internet Ecosystem and Evolution at ESIB Saint-Joseph University of Beirut.
 
