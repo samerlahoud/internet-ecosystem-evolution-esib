@@ -2,6 +2,13 @@
 
 This repository contains the contributions of the student projects in the course on Internet Ecosystem and Evolution at ESIB Saint-Joseph University of Beirut.
 
+## Project Description
+* [AS Graph](as-graph.md)
+* [BGP Stability](bgp-stability.md)
+* [Regional ISPs](regional-isp.md)
+* [IPv6 Path Inflation](ipv6-path-inflation.md)
+* [DNS Measurement](dns-measurement.md)
+
 ## Timeline:
 * Project allocation
 * Definition of goals and tasks
@@ -19,6 +26,3 @@ This repository contains the contributions of the student projects in the course
 ## Deliverables on Github
 * Working code
 * Technical document for analytics
-
-## Project Description
-* [AS Graph](as-graph.md) 
