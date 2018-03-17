@@ -19,5 +19,3 @@ This repository contains the contributions of the student projects in the course
 ## Deliverables on Github
 * Working code
 * Technical document for analytics
-
-[a relative link](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/1-as-graph/project-description.md)
