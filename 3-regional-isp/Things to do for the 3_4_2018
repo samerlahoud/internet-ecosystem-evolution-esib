@@ -1,0 +1,7 @@
+Find all the AS with the code Country(input by the user) by using the code get_contry_asn
+ADD them in a list "AS_LB=[]"
+Find the AS_Neighbours(https://stat.ripe.net/data/asn-neighbours/data.json?resource=elements of AS_LB) of all the elements in this list,with the value Type="LEFT"
+ADD these ASN in a list named Providers=[]
+Compare the country code of the providers with LB=> if(false)=>extract the path count of each providers and see the pourcentage of their coverage
+Find the pourcentage:sum = add all the Path count of the AS ===> (Path Count value(provider)/sum)*100
+Plot The pourcentage of International Providers of the Country by using matplotlib,in a form of a doughnut diagram
