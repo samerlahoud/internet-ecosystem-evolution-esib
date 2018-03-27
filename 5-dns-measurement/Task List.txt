@@ -15,3 +15,4 @@ https://public-dns.info/nameserver/lb.html
 https://www.caida.org/projects/dns/dns-root-gtld/status.xml
 http://www.iit.cnr.it/sites/default/files/DNS_Zeitgeist.pdf
 lars_bade.pdf
+https://www.iana.org/domains/root/db
