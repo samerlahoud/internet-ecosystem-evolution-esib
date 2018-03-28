@@ -19,6 +19,7 @@ def get_country_asn(country_code):
         country_asns_json = json.loads(response.content.decode('utf-8'))
         country_asns = country_asns_json["data"]["countries"][0]["routed"]
         print("LES AS : " + str(country_asns))
+        print()
         return country_asns
     else:
         return None
@@ -29,22 +30,26 @@ def GO_TO_ASN_NEIGHBOURS(ASN,c):
     json_data_ASN_NEIGHBOURS = requests.get(url).json()
     liste_asn_providers=[]
     Path_Count_value=[]
+    Path_Count_value_Int=[]
     for i in json_data_ASN_NEIGHBOURS['data']['neighbours']:
         if (i['type']=='left'):
             liste_asn_providers.append(str(i['asn']))
             Path_Count_value.append(str(i['power']))
-    
-    print("Les Providers " +str(liste_asn_providers)+ "de valeur"+str(Path_Count_value))
-    Nombre_Totale_De_Path(Path_Count_value)
-    Calcul_Frequence(liste_asn_providers,c,ASN,Path_Count_value)
-    #return liste_asn_providers
-    #print("Les Providers de AS "+ str(ASN) + str(liste_asn_providers))
+            api1='https://stat.ripe.net/data/rir/data.json?'
+            url1=api1+ urllib.parse.urlencode({'resource':str(i['asn'])})+'&lod=2'
+            json_data = requests.get(url1).json()
+            for j in json_data['data']['rirs']:
+                if (j['country']!=c):
+                    Path_Count_value_Int.append(str(i['power']))
+                    
+                    
+    print("Les Providers " +str(liste_asn_providers)+ " de valeur "+str(Path_Count_value))
+    Calcul_Frequence(liste_asn_providers,c,ASN,Path_Count_value_Int)
 
-def Nombre_Totale_De_Path(liste_path):
+def Nombre_Totale_De_Path(liste_Int):
     val=0
-    for i in liste_path:
+    for i in liste_Int:
         val=val+int(i)
-    #print("Le nombre Totale de Path est " +str(val))
     return val
         
 
@@ -64,21 +69,45 @@ def Calcul_Frequence(liste,c,AS,liste_path_count):
                 International_Providers.append(i)
                 
     
-    print("Les Providers Locaux du AS"+AS+" sont: "+str(Local_Providers))
-    print("Les International Providers du AS"+AS+" sont: "+str(International_Providers))
+    #print("Les Providers Locaux du AS"+AS+" sont: "+str(Local_Providers))
+    print("Les International Providers du AS"+AS+" sont:"+str(International_Providers))
     Totale=Nombre_Totale_De_Path(liste_path_count)
     print("Le Nombre Totale de Path est : "+str(Totale))
     for p in Trouver_valeur_path(International_Providers,AS):
         c=(int(p)/Totale)*100
-        Frequence_Finale.append(c)
-        
+        Frequence_Finale.append(c)    
     #print("F= "+str(Frequence_Finale))
+    #print("taille"+str(len(International_Providers)))
+    #print("taille"+str(len(Frequence_Finale)))
     DESSINER_DIAGRAMME(International_Providers,Frequence_Finale,AS)
+    
+#def Calculer_Frequence_Pays(AS_Pays,AS_International):
+    #for i in liste_asn:
+        
+    
+    
+
 
 def DESSINER_DIAGRAMME(liste,f,ASN):
+    labels=[]
+    sizes=[]
     if(liste!=[]):
-        plt.title("International Transit Providers of AS "+ASN+" :")
-        labels=liste
+        plt.title("International Transit Providers of "+str(GET_NAME_One_AS(ASN))+" :")
+        labels=GET_NAME(liste)
+        sizes=f
+        plt.pie(sizes,labels=labels,autopct='%1.1f%%')
+            #argument explode qui permet de mettre en valeur une des part du diagramme
+        plt.show()
+    else:
+        print("Ce AS ne possede pas de International Transit Providers")
+        print()
+
+def DESSINER_DIAGRAMME_Pays(liste,f,c):
+    labels=[]
+    sizes=[]
+    if(liste!=[]):
+        plt.title("International Transit Providers of "+c+" :")
+        labels=GET_NAME(liste)
         sizes=f
         plt.pie(sizes,labels=labels,autopct='%1.1f%%')
         #argument explode qui permet de mettre en valeur une des part du diagramme
@@ -88,8 +117,6 @@ def DESSINER_DIAGRAMME(liste,f,ASN):
         print()
         
         
-
-    
 
                 
                 
@@ -102,15 +129,42 @@ def Trouver_valeur_path(Int_providers,AS):
         for j in Int_providers:
             if (i['asn']==int(j)):
                 Fre.append(str(i['power']))
-                #print(Fre)
-    #print("Les INternationales Providers "+str(Int_providers)+"avec la frequence de chacun "+str(Fre))
     return Fre
-                        
-                
-                
-                
+
+
+def GET_NAME(liste):
+    api ='https://stat.ripe.net/data/whois/data.json?'
+    Names=[]
+    for i in liste:  
+        url=api+ urllib.parse.urlencode({'resource':i})
+        json_data_AS_NAME = requests.get(url).json()
+        if(i=='6453'):
+            Names.append('TATA COMMUNICATIONS')
+        else:
+            for t in json_data_AS_NAME['data']['records']:
+                for j in t:
+                    if(j['key']=='as-name' or j['key']=='ASName'):
+                        Names.append(j['value'])
+    return Names
+
+def GET_NAME_One_AS(AS):
+    api ='https://stat.ripe.net/data/whois/data.json?'
+    Names=[] 
+    url=api+ urllib.parse.urlencode({'resource':i})
+    json_data_AS_NAME = requests.get(url).json()
+    if(AS=='6453'):
+        Names.append('TATA COMMUNICATIONS')
+    else:
+        for t in json_data_AS_NAME['data']['records']:
+            for j in t:
+                if(j['key']=='as-name' or j['key']=='ASName'):
+                    Names.append(j['value'])
+    return Names
+        
     
-    
+                
+                              
+
 while True:
     Country = input('Country: ')
     if (Country == 'quit' or Country =='q'):
@@ -118,7 +172,5 @@ while True:
     else:
         for i in get_country_asn(Country):
             GO_TO_ASN_NEIGHBOURS(i,Country)
-            #print(GO_TO_ASN_NEIGHBOURS(i,Country))
-        #print("LES ASN LIBANAIS SONT : "+ str(get_country_asn(Country)))
         
         
