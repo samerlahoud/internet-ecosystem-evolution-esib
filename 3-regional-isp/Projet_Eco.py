@@ -67,22 +67,25 @@ def Calcul_Frequence(liste,c,AS,liste_path_count):
                 Local_Providers.append(i)
             else:
                 International_Providers.append(i)
-                
-    
     #print("Les Providers Locaux du AS"+AS+" sont: "+str(Local_Providers))
     print("Les International Providers du AS"+AS+" sont:"+str(International_Providers))
-    Totale=Nombre_Totale_De_Path(liste_path_count)
-    print("Le Nombre Totale de Path est : "+str(Totale))
-    for p in Trouver_valeur_path(International_Providers,AS):
-        c=(int(p)/Totale)*100
-        Frequence_Finale.append(c)    
-    #print("F= "+str(Frequence_Finale))
-    #print("taille"+str(len(International_Providers)))
-    #print("taille"+str(len(Frequence_Finale)))
-    DESSINER_DIAGRAMME(International_Providers,Frequence_Finale,AS)
     
-#def Calculer_Frequence_Pays(AS_Pays,AS_International):
-    #for i in liste_asn:
+    #Totale=Nombre_Totale_De_Path(liste_path_count)
+    #print("Le Nombre Totale de Path est : "+str(Totale))
+    
+    for p in Trouver_valeur_path(International_Providers,AS):
+        Frequence_Finale.append(int(p))
+            
+    DESSINER_DIAGRAMME(International_Providers,Frequence_Finale,AS)
+
+    
+    
+def Calculer_Frequence_Pays(liste_asn,Int_liste):
+    for i in liste_asn:
+        for j in Int_liste:
+            Trouver_valeur_path(j,i)
+    print(Trouver_valeur_path(j,i))
+            
         
     
     
@@ -95,9 +98,11 @@ def DESSINER_DIAGRAMME(liste,f,ASN):
         plt.title("International Transit Providers of "+str(GET_NAME_One_AS(ASN))+" :")
         labels=GET_NAME(liste)
         sizes=f
-        plt.pie(sizes,labels=labels,autopct='%1.1f%%')
-            #argument explode qui permet de mettre en valeur une des part du diagramme
+        plt.pie(sizes,autopct='%1.1f%%')
+        plt.legend(labels,bbox_to_anchor=(0.85,1), loc=2, borderaxespad=0.)
+        plt.axis('equal')
         plt.show()
+        
     else:
         print("Ce AS ne possede pas de International Transit Providers")
         print()
