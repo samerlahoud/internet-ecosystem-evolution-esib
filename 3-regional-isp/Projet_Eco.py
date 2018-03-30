@@ -134,6 +134,18 @@ def DESSINER_DIAGRAMME(liste,f,ASN):
         print("Ce AS ne possede pas de International Transit Providers")
         print()
 
+def DESSINER_DIAGRAMME_Pays(liste,f,Country):
+    labels=[]
+    sizes=[]
+    if(liste!=[]):
+        plt.title("International Transit Providers of "+ Country+ " are")
+        labels=GET_NAME(liste)
+        sizes=f
+        plt.pie(sizes,autopct='%1.1f%%')
+        plt.legend(labels,bbox_to_anchor=(0.85,1), loc=2, borderaxespad=0.)
+        plt.axis('equal')
+        plt.show()
+
 
                                     
 def Trouver_valeur_path(Int_providers,AS):
@@ -162,8 +174,9 @@ def Trouver_valeur_path_Pays(Int_providers,Liste_AS):
                 if(i==str(p['asn'])):
                     val=val+p['power']
                     Fre.insert(Int_providers.index(i),str(val))
-            print("La  valeur de "+str(i)+" est de" +str(Fre)+" pour le provider "+str(j))
-    print(Fre)
+            #print("La  valeur de "+str(i)+" est de" +str(Fre)+" pour le provider "+str(j))
+    del Fre[len(Int_providers):]
+    return Fre
 
 
 
@@ -222,6 +235,7 @@ while True:
         c=get_country_asn(Country)
         o=Trouver_International_Providers_Au_Liban(Country)
         a=Trouver_valeur_path_Pays(o,c)
+        DESSINER_DIAGRAMME_Pays(o,a,Country)
         #Trouver_Frequence_International_Providers_Liban(o,c,International_Providers,Frequence_Finale)
         for i in get_country_asn(Country):
             GO_TO_ASN_NEIGHBOURS(i,Country)
