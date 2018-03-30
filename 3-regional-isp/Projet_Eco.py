@@ -18,8 +18,6 @@ def get_country_asn(country_code):
     if response.status_code == 200:
         country_asns_json = json.loads(response.content.decode('utf-8'))
         country_asns = country_asns_json["data"]["countries"][0]["routed"]
-        print("LES AS : " + str(country_asns))
-        print()
         return country_asns
     else:
         return None
@@ -45,13 +43,7 @@ def GO_TO_ASN_NEIGHBOURS(ASN,c):
                     
     print("Les Providers " +str(liste_asn_providers)+ " de valeur "+str(Path_Count_value))
     Calcul_Frequence(liste_asn_providers,c,ASN,Path_Count_value_Int)
-
-def Nombre_Totale_De_Path(liste_Int):
-    val=0
-    for i in liste_Int:
-        val=val+int(i)
-    return val
-        
+    
 
 
 def Calcul_Frequence(liste,c,AS,liste_path_count):
@@ -67,15 +59,10 @@ def Calcul_Frequence(liste,c,AS,liste_path_count):
                 Local_Providers.append(i)
             else:
                 International_Providers.append(i)
-    #print("Les Providers Locaux du AS"+AS+" sont: "+str(Local_Providers))
     print("Les International Providers du AS"+AS+" sont:"+str(International_Providers))
-    
-    #Totale=Nombre_Totale_De_Path(liste_path_count)
-    #print("Le Nombre Totale de Path est : "+str(Totale))
-    
     for p in Trouver_valeur_path(International_Providers,AS):
         Frequence_Finale.append(int(p))
-            
+        
     DESSINER_DIAGRAMME(International_Providers,Frequence_Finale,AS)
 
     
@@ -85,11 +72,51 @@ def Calculer_Frequence_Pays(liste_asn,Int_liste):
         for j in Int_liste:
             Trouver_valeur_path(j,i)
     print(Trouver_valeur_path(j,i))
-            
-        
-    
-    
 
+def Trouver_International_Providers_Au_Liban(Country):
+    liste_asn_providers=[]
+    International_Providers=[]
+    Country_ASN=get_country_asn(Country)
+    for i in Country_ASN:
+        api='https://stat.ripe.net/data/asn-neighbours/data.json?'
+        url=api+ urllib.parse.urlencode({'resource':i})
+        json_data_ASN_NEIGHBOURS = requests.get(url).json()
+        for j in json_data_ASN_NEIGHBOURS['data']['neighbours']:
+            if (j['type']=='left'):
+                liste_asn_providers.append(str(j['asn']))
+    a=set(liste_asn_providers)
+    b=list(a)
+    print(b)
+    for p in b:
+        api='https://stat.ripe.net/data/rir/data.json?'
+        url=api+ urllib.parse.urlencode({'resource':p})+'&lod=2'
+        json_data = requests.get(url).json()
+        for t in json_data['data']['rirs']:
+            if (t['country']!=Country):
+                International_Providers.append(p)
+    x=set(International_Providers)
+    y=list(x)
+    print("Les International Providers du Liban sont:"+str(y))
+    return y
+
+#------------------------------------------------------------------------------------------------------------------------------------------
+
+
+def Trouver_Frequence_International_Providers_Liban(Liste_Internationa_Providers_Liban,ASN,Internationa_Provider_AS,Value_AS_Path):
+    Liste=[]
+    Val=0
+    for i in Liste_Internationa_Providers_Liban:
+        for j in ASN:
+            for p in Internationa_Provider_AS:
+                if(i==p):
+                    #Val=Val+Value_AS_Path[Internationa_Provider_AS.index(p)]
+                    Liste.append(Value_AS_Path[Internationa_Provider_AS.index(p)])
+    print(Liste)
+
+#---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    
+    
 
 def DESSINER_DIAGRAMME(liste,f,ASN):
     labels=[]
@@ -107,24 +134,8 @@ def DESSINER_DIAGRAMME(liste,f,ASN):
         print("Ce AS ne possede pas de International Transit Providers")
         print()
 
-def DESSINER_DIAGRAMME_Pays(liste,f,c):
-    labels=[]
-    sizes=[]
-    if(liste!=[]):
-        plt.title("International Transit Providers of "+c+" :")
-        labels=GET_NAME(liste)
-        sizes=f
-        plt.pie(sizes,labels=labels,autopct='%1.1f%%')
-        #argument explode qui permet de mettre en valeur une des part du diagramme
-        plt.show()
-    else:
-        print("Ce AS ne possede pas de International Transit Providers")
-        print()
-        
-        
 
-                
-                
+                                    
 def Trouver_valeur_path(Int_providers,AS):
     api='https://stat.ripe.net/data/asn-neighbours/data.json?'
     url=api+ urllib.parse.urlencode({'resource':AS})
@@ -137,7 +148,28 @@ def Trouver_valeur_path(Int_providers,AS):
     return Fre
 
 
+
+
+def Trouver_valeur_path_Pays(Int_providers,Liste_AS):
+    Fre=[]
+    for i in Int_providers:
+        val=0
+        for j in Liste_AS:
+            api='https://stat.ripe.net/data/asn-neighbours/data.json?'
+            url=api+ urllib.parse.urlencode({'resource':j})
+            json_data_ASN_NEIGHBOURS = requests.get(url).json()
+            for p in json_data_ASN_NEIGHBOURS['data']['neighbours']:
+                if(i==str(p['asn'])):
+                    val=val+p['power']
+                    Fre.insert(Int_providers.index(i),str(val))
+            print("La  valeur de "+str(i)+" est de" +str(Fre)+" pour le provider "+str(j))
+    print(Fre)
+
+
+
+
 def GET_NAME(liste):
+    #url=https://stat.ripe.net/data/as-overview/data.json?resource=AS42020
     api ='https://stat.ripe.net/data/whois/data.json?'
     Names=[]
     for i in liste:  
@@ -151,6 +183,18 @@ def GET_NAME(liste):
                     if(j['key']=='as-name' or j['key']=='ASName'):
                         Names.append(j['value'])
     return Names
+
+def GET_NAME1(liste):
+    #url=https://stat.ripe.net/data/as-overview/data.json?resource=AS42020
+    api ='https://stat.ripe.net/data/as-overview/data.json?'
+    Names=[]
+    for i in liste:  
+        url=api+ urllib.parse.urlencode({'resource':i})
+        json_data_AS_NAME = requests.get(url).json()
+        for t in json_data_AS_NAME['data']['holder']:
+            Names.append(t)
+    return Names
+
 
 def GET_NAME_One_AS(AS):
     api ='https://stat.ripe.net/data/whois/data.json?'
@@ -175,6 +219,10 @@ while True:
     if (Country == 'quit' or Country =='q'):
         break
     else:
+        c=get_country_asn(Country)
+        o=Trouver_International_Providers_Au_Liban(Country)
+        a=Trouver_valeur_path_Pays(o,c)
+        #Trouver_Frequence_International_Providers_Liban(o,c,International_Providers,Frequence_Finale)
         for i in get_country_asn(Country):
             GO_TO_ASN_NEIGHBOURS(i,Country)
         
