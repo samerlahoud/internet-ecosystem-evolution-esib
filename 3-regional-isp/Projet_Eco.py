@@ -9,6 +9,7 @@ from collections import Counter
 #url=https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS42020
 
 api_url_base = 'https://stat.ripe.net/data/'
+
 def get_country_asn(country_code):
 
     api_url = '{}country-asns/data.json?resource={}&lod=1'.format(api_url_base, country_code)
@@ -21,6 +22,21 @@ def get_country_asn(country_code):
         return country_asns
     else:
         return None
+
+def get_country_neighbours(country_code, country_asns):
+
+    country_neighbours=[]
+
+    for asn in country_asns:
+        print("studying: ", asn)
+        api_url = '{}asn-neighbours/data.json?resource={}&lod=1'.format(api_url_base, asn)
+        asn_neighbours_json = requests.get(api_url).json()
+        for neighbour in asn_neighbours_json['data']['neighbours']:
+            neighbour_asn = str(neighbour['asn'])
+            if (neighbour['type']=='left' and neighbour_asn not in country_asns and neighbour_asn not in country_neighbours):
+                country_neighbours.append(neighbour_asn)
+                print(neighbour_asn)
+    return country_neighbours
 
 def GO_TO_ASN_NEIGHBOURS(ASN,c):
     api='https://stat.ripe.net/data/asn-neighbours/data.json?'
@@ -170,11 +186,12 @@ def Trouver_valeur_path_Pays(Int_providers,Liste_AS):
             api='https://stat.ripe.net/data/asn-neighbours/data.json?'
             url=api+ urllib.parse.urlencode({'resource':j})
             json_data_ASN_NEIGHBOURS = requests.get(url).json()
-            for p in json_data_ASN_NEIGHBOURS['data']['neighbours']:
+            neigh_list = json_data_ASN_NEIGHBOURS['data']['neighbours']
+            for p in neigh_list:
                 if(i==str(p['asn'])):
                     val=val+p['power']
                     Fre.insert(Int_providers.index(i),str(val))
-            #print("La  valeur de "+str(i)+" est de" +str(Fre)+" pour le provider "+str(j))
+            print("La  valeur de "+str(i)+" est de" +str(Fre)+" pour le provider "+str(j))
     del Fre[len(Int_providers):]
     return Fre
 
@@ -228,16 +245,20 @@ def GET_NAME_One_AS(AS):
                               
 
 while True:
-    Country = input('Country: ')
-    if (Country == 'quit' or Country =='q'):
+    country_code = input('Country two-letter code: ')
+    if (country_code == 'quit' or country_code =='q'):
         break
     else:
-        c=get_country_asn(Country)
-        o=Trouver_International_Providers_Au_Liban(Country)
-        a=Trouver_valeur_path_Pays(o,c)
-        DESSINER_DIAGRAMME_Pays(o,a,Country)
+        country_asns = get_country_asn(country_code)
+        print(country_asns)
+        country_neighbours = get_country_neighbours(country_code, country_asns)
+        print(country_neighbours)
+        
+        #o=Trouver_International_Providers_Au_Liban(Country)
+        #a=Trouver_valeur_path_Pays(o,c)
+        #DESSINER_DIAGRAMME_Pays(o,a,Country)
         #Trouver_Frequence_International_Providers_Liban(o,c,International_Providers,Frequence_Finale)
-        for i in get_country_asn(Country):
-            GO_TO_ASN_NEIGHBOURS(i,Country)
+        #for i in get_country_asn(Country):
+        #    GO_TO_ASN_NEIGHBOURS(i,Country)
         
         
