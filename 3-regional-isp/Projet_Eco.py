@@ -25,7 +25,7 @@ def get_country_asn(country_code):
 
 def get_country_neighbours(country_code, country_asns):
 
-    country_neighbours=[]
+    country_neighbours={}
 
     for asn in country_asns:
         print("studying: ", asn)
@@ -33,9 +33,13 @@ def get_country_neighbours(country_code, country_asns):
         asn_neighbours_json = requests.get(api_url).json()
         for neighbour in asn_neighbours_json['data']['neighbours']:
             neighbour_asn = str(neighbour['asn'])
-            if (neighbour['type']=='left' and neighbour_asn not in country_asns and neighbour_asn not in country_neighbours):
-                country_neighbours.append(neighbour_asn)
-                print(neighbour_asn)
+            neighbour_power = int(neighbour['power'])
+            if (neighbour['type']=='left' and neighbour_asn not in country_asns):
+                if (neighbour_asn not in country_neighbours):
+                    country_neighbours[neighbour_asn] = neighbour_power
+                else:
+                    country_neighbours[neighbour_asn] = country_neighbours[neighbour_asn] + neighbour_power
+                print(country_neighbours)
     return country_neighbours
 
 def GO_TO_ASN_NEIGHBOURS(ASN,c):
