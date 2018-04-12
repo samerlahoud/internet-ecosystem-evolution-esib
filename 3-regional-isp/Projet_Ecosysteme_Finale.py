@@ -9,9 +9,11 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import plotly
 import datetime
+import plotly.figure_factory as ff
 
 plotly.tools.set_credentials_file(username='pierre12', api_key='EF5vrYMDIXU36y0vTxNb')
 plotly.tools.set_config_file(plotly_domain='https://plot.ly',plotly_streaming_domain='stream.plot.ly')
+#URL=https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS42020&starttime=2008-12-01T12:00:00
 
 #url=https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS42020
 
@@ -46,6 +48,18 @@ def get_country_neighbours(country_code, country_asns):
                     country_neighbours[neighbour_asn] = country_neighbours[neighbour_asn] + neighbour_power
     return country_neighbours
 
+def get_ISP_LB(country_code,country_asns):
+    Liste=[]
+    for asn in country_asns:
+        api_url = '{}asn-neighbours/data.json?resource={}&lod=1'.format(api_url_base, asn)
+        asn_neighbours_json = requests.get(api_url).json()
+        for neighbour in asn_neighbours_json['data']['neighbours']:
+            neighbour_asn = str(neighbour['asn'])
+            if (neighbour['type']=='left' and neighbour_asn in country_asns):
+                Liste.append(neighbour_asn)
+    return list(set(Liste))
+    
+
 def get_neighbours_AS(AS,country_asns):
     AS_neighbours={}
     Liste=[]
@@ -62,22 +76,7 @@ def get_neighbours_AS(AS,country_asns):
     AS_neighbours[AS]=Liste
     #print("LOLLLLL"+str(AS_neighbours))
     DESSINER_DIAGRAMME(Neighbours,Liste,AS)
-
-
-def get_neighbours_AS1(AS,country_asns):
-    AS_neighbours={}
-    Liste=[]
-    Neighbours=[]
-    api_url = '{}asn-neighbours/data.json?resource={}&lod=1'.format(api_url_base,AS)
-    asn_neighbours_json = requests.get(api_url).json()
-    for neighbour in asn_neighbours_json['data']['neighbours']:
-        neighbour_asn = str(neighbour['asn'])
-        neighbour_power = int(neighbour['power'])
-        if (neighbour['type']=='left' and neighbour_asn not in country_asns):
-            Neighbours.append(neighbour_asn)
-    return Neighbours
-            
-        
+       
 def Remplir_liste_Pays(Dic,Country):
     Labels=[]
     Value=[]
@@ -90,36 +89,68 @@ def Remplir_liste_Pays(Dic,Country):
     DESSINER_DIAGRAMME_Pays(Labels,Value,Country)
 
 def ASN_History(ISPInt,ISPLB):
+    #url=https://stat.ripe.net/data/asn-neighbours-history/data.json?endtime=2018-04-06T12%3A00&resource=AS206472&starttime=2014-12-21
     Liste_start=[]
     Liste_End=[]
+    Liste=[]
     Start_Time={}
-    End_Time={}
-    print("LOL")
-    for i in ISPLB:
-        api_url = '{}asn-neighbours-history/data.json?resource={}'.format(api_url_base,i)
-        asn_neighbours_json = requests.get(api_url).json()
-        print("Studying ISP "+ str(i))
-        for j in ISPInt.keys():
-            print("Studying International ISP "+ str(j))
+    for j in ISPInt.keys():
+        print("Studying International ISP "+ str(j))
+        for i in ISPLB:
+            api_url = '{}asn-neighbours-history/data.json?endtime=2018-04-06T12%3A00&resource={}&starttime=2008-12-21'.format(api_url_base,i)
+            asn_neighbours_json = requests.get(api_url).json()
+            print("Studying ISP "+ str(i))
             for p in asn_neighbours_json['data']['neighbours']:
                 if(p['neighbour']==int(j)):
-                    for k in p['timelines']: 
+                    for k in p['timelines']:
                         x=k['starttime']
+                        y=k['endtime']
                         year=Get_Year(x)
-                    Liste_start.append(year)
-                    d=min(Liste_start)
-                    Liste_start.append(d)
-        print("Liste Start de "+str(j)+" est "+str(Liste_start))
-        #Start_Time[j]=Liste_start
-        #print("Dic Start"+str(Start_Time))
-        
-                    
+                        year_final=Get_Year(y)
+                        Liste_start.append(year)
+                        Liste_End.append(year_final)
+            print("Liste Start est "+ str(Liste_start)+" /Liste End est "+ str(Liste_End))
+            if(Liste_start !=[] or Liste_End!=[]):
+                v=min(Liste_start)
+                p=max(Liste_End)
+                del Liste[:]
+                Liste.append(v)
+                Liste.append(p)
+                Start_Time[j]= Liste
+                print("Liste Start de "+str(j)+" est "+str(Liste_start))                
+                print("Start Time of International Providers in Lebanon are "+str(Start_Time))
+    return Start_Time
+
+def ASN_History2(country_code, country_asns,year):
+    #URL=https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS42020&starttime=2008-12-01T12:00:00
+    country_neighbours={}
+    for asn in country_asns:
+        api_url = '{}asn-neighbours/data.json?resource={}&starttime={}-12-01T12:00:00'.format(api_url_base,asn,year)
+        asn_neighbours_json = requests.get(api_url).json()
+        for neighbour in asn_neighbours_json['data']['neighbours']:
+            neighbour_asn = str(neighbour['asn'])
+            neighbour_power = int(neighbour['power'])
+            if (neighbour['type']=='left' and neighbour_asn not in country_asns):
+                if (neighbour_asn not in country_neighbours):
+                    country_neighbours[neighbour_asn] = neighbour_power
+                else:
+                    country_neighbours[neighbour_asn] = country_neighbours[neighbour_asn] + neighbour_power
+    print("In "+str(year)+" "+str(country_neighbours))
+    return country_neighbours
+    
                                                             
 def Get_Year(Date):
     formatt="%Y-%m-%dT%H:%M:%S"
     dateobject = datetime.datetime.strptime(Date,formatt)
     return dateobject.year
-    
+
+def Dessiner_Grantt_Chart(Dic):
+    df=[]
+    for i in Dic.keys():
+        p=Dic[i]
+        df.append(dict(Task=GET_NAME_One_AS(i),Start=str(p[0]),Finish=str(p[1])))
+    fig = ff.create_gantt(df)
+    py.plot(fig, filename='gantt-simple-gantt-chart', world_readable=True)
     
     
 def DESSINER_DIAGRAMME(liste,f,ASN):
@@ -187,11 +218,18 @@ def start():
             break
         else:
             country_asns = get_country_asn(country_code)
-            print(country_asns)
+            #print(country_asns)
             country_neighbours = get_country_neighbours(country_code, country_asns)
-            print(country_neighbours)
-            #ASN_History(country_neighbours,country_asns)
+            #print(country_neighbours)
+            #c=get_ISP_LB(country_code,country_asns)
             Remplir_liste_Pays(country_neighbours,country_code)
+            i=0
+            year=2008
+            while(i<10):
+                f=ASN_History2(country_code, country_asns,year)
+                Remplir_liste_Pays(f,country_code)
+                i=i+1
+                year=year+1
             Continuer = input("Do you want to see the International Providers of another country: ")
             if(Continuer=='yes' or Continuer=='y'):
                 start()
