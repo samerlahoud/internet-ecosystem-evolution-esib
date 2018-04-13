@@ -11,7 +11,7 @@ import plotly
 import datetime
 import plotly.figure_factory as ff
 
-plotly.tools.set_credentials_file(username='pierre12', api_key='EF5vrYMDIXU36y0vTxNb')
+plotly.tools.set_credentials_file(username= Your_Username, api_key= Your_API)
 plotly.tools.set_config_file(plotly_domain='https://plot.ly',plotly_streaming_domain='stream.plot.ly')
 #URL=https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS42020&starttime=2008-12-01T12:00:00
 
