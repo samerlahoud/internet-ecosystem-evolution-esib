@@ -88,38 +88,17 @@ def Remplir_liste_Pays(Dic,Country):
     print(Value)
     DESSINER_DIAGRAMME_Pays(Labels,Value,Country)
 
-def ASN_History(ISPInt,ISPLB):
-    #url=https://stat.ripe.net/data/asn-neighbours-history/data.json?endtime=2018-04-06T12%3A00&resource=AS206472&starttime=2014-12-21
-    Liste_start=[]
-    Liste_End=[]
-    Liste=[]
-    Start_Time={}
-    for j in ISPInt.keys():
-        print("Studying International ISP "+ str(j))
-        for i in ISPLB:
-            api_url = '{}asn-neighbours-history/data.json?endtime=2018-04-06T12%3A00&resource={}&starttime=2008-12-21'.format(api_url_base,i)
-            asn_neighbours_json = requests.get(api_url).json()
-            print("Studying ISP "+ str(i))
-            for p in asn_neighbours_json['data']['neighbours']:
-                if(p['neighbour']==int(j)):
-                    for k in p['timelines']:
-                        x=k['starttime']
-                        y=k['endtime']
-                        year=Get_Year(x)
-                        year_final=Get_Year(y)
-                        Liste_start.append(year)
-                        Liste_End.append(year_final)
-            print("Liste Start est "+ str(Liste_start)+" /Liste End est "+ str(Liste_End))
-            if(Liste_start !=[] or Liste_End!=[]):
-                v=min(Liste_start)
-                p=max(Liste_End)
-                del Liste[:]
-                Liste.append(v)
-                Liste.append(p)
-                Start_Time[j]= Liste
-                print("Liste Start de "+str(j)+" est "+str(Liste_start))                
-                print("Start Time of International Providers in Lebanon are "+str(Start_Time))
-    return Start_Time
+def Remplir_liste_Pays2(Dic,Country,year):
+    Labels=[]
+    Value=[]
+    for cle in Dic.keys():
+        Labels.append(cle)
+    for cle1 in Dic.values():
+        Value.append(cle1)
+    print(Labels)
+    print(Value)
+    DESSINER_DIAGRAMME_Pays2(Labels,Value,Country,year)
+
 
 def ASN_History2(country_code, country_asns,year):
     #URL=https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS42020&starttime=2008-12-01T12:00:00
@@ -177,9 +156,15 @@ def DESSINER_DIAGRAMME_Pays(liste,f,Country):
                   'type': 'pie'}],
         'layout': {'title': 'International Transit Providers of '+Country+ ' are'}
          }
-
     py.plot(fig)
-
+def DESSINER_DIAGRAMME_Pays2(liste,f,Country,year):
+    fig = {
+        'data': [{'labels': GET_NAME(liste),
+                  'values':f,
+                  'type': 'pie'}],
+        'layout': {'title': 'International Transit Providers of '+Country+ ' in '+str(year)+' are:'}
+         }
+    py.plot(fig)
 
 def GET_NAME(liste):
     api ='https://stat.ripe.net/data/whois/data.json?'
@@ -202,7 +187,7 @@ def GET_NAME_One_AS(AS):
     Names=[] 
     url=api+ urllib.parse.urlencode({'resource':AS})
     json_data_AS_NAME = requests.get(url).json()
-    if(AS=='6453'):
+    if(AS =='6453'):
         Names.append('TATA COMMUNICATIONS')
     else:
         for t in json_data_AS_NAME['data']['records']:
@@ -223,11 +208,13 @@ def start():
             #print(country_neighbours)
             #c=get_ISP_LB(country_code,country_asns)
             Remplir_liste_Pays(country_neighbours,country_code)
+            print("c'est Fini")
             i=0
             year=2008
             while(i<10):
+                print("Studying year "+str(year))
                 f=ASN_History2(country_code, country_asns,year)
-                Remplir_liste_Pays(f,country_code)
+                Remplir_liste_Pays2(f,country_code,year)
                 i=i+1
                 year=year+1
             Continuer = input("Do you want to see the International Providers of another country: ")
