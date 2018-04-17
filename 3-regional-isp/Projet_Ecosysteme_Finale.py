@@ -19,7 +19,7 @@ plotly.tools.set_config_file(plotly_domain='https://plot.ly',plotly_streaming_do
 
 api_url_base = 'https://stat.ripe.net/data/'
 
-
+# We can Retrieve the Interntional ISP of any country we want:
 def get_country_asn(country_code):
     api_url = '{}country-asns/data.json?resource={}&lod=1'.format(api_url_base, country_code)
 
