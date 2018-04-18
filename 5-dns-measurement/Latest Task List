@@ -1,0 +1,17 @@
+Tasks List + Estimated Time of Completion / Task
+Task 1 : Develop a script to get IPs of ccTLD servers (Time : 1 week)
+Task 2 : Store collected data in a text file (Time : N/A)
+          Hashmap<Key = Country Code, Value = IP Address>
+Task 3 : Develop a script running the dig command for the 5 top website in Lebanon
+Task 4 : Develop a web scrolling script to get the top n websites / country (Time : 1 week)
+Task 5 : Generalize the task 3 for all countries and websites (Time : N/A , simple parameter modification)
+Task 6 : Graphically represent and plot the results (Time : 3 to 4 days)
+Task 7 : Analyse the data / country (Time : 3 to 4 days)
+
+Reference link for dig : https://www.easydns.com/blog/2011/05/02/dns-speeds-debunked/
+Other References : https://www.alexa.com/topsites/countries/LB
+                   https://aws.amazon.com/alexa-top-sites/getting-started/
+                   https://dottld.net/
+                   https://www.similarweb.com/top-websites/
+                   http://www.nationsonline.org/oneworld/country_code_list.htm
+                   https://www.cyberciti.biz/faq/linux-unix-dig-command-examples-usage-syntax/dig-batch-mode-read-hostnames-file/
