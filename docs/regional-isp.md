@@ -7,7 +7,7 @@ With the Help of the RipeStat it will be possible to extract the number of paths
 Like we can see in this Graph below:
 
 
-![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB.png)
+![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB.png) ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2008.png) ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2009.png)
 
 
 
