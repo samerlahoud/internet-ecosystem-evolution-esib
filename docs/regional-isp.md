@@ -8,7 +8,7 @@ Like we can see in this Graph below:
 
 | International Transit Providers in Lebanon in 2018 | International Transit Providers in Lebanon in 2008  |
 | ------------- | ------------- |
-| ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB.png)  | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2008.png)l  |
+| ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB.png)  | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2008.png) |
 
 
 
