@@ -6,7 +6,7 @@ First of all we are going to identify the different International ISP who covers
 With the Help of the RipeStat it will be possible to extract the number of paths by using the get.request url method.
 Like we can see in this Graph below:
 
-| International Transit Providers in Lebanon in 2018 | International Transit Providers in Lebanon in 2008  |
+| International Transit Providers in Lebanon | International Transit Providers in Lebanon |
 | ------------- | ------------- |
 | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2008.png)  | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2009.png) |
 | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2010.png)  | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2011.png) |
