@@ -3,23 +3,20 @@ import matplotlib.pyplot as plt
 import urllib.parse
 import requests 
 import json
-from collections import Counter
-from collections import defaultdict
 import plotly.plotly as py
 import plotly.graph_objs as go
 import plotly
 import datetime
 import plotly.figure_factory as ff
+import plotly.offline as offline
+import os.path
 
-plotly.tools.set_credentials_file(username= Your_Username, api_key= Your_API)
-plotly.tools.set_config_file(plotly_domain='https://plot.ly',plotly_streaming_domain='stream.plot.ly')
-#URL=https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS42020&starttime=2008-12-01T12:00:00
 
-#url=https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS42020
+
 
 api_url_base = 'https://stat.ripe.net/data/'
 
-# We can Retrieve the Interntional ISP of any country we want:
+
 def get_country_asn(country_code):
     api_url = '{}country-asns/data.json?resource={}&lod=1'.format(api_url_base, country_code)
 
@@ -76,27 +73,74 @@ def get_neighbours_AS(AS,country_asns):
     AS_neighbours[AS]=Liste
     #print("LOLLLLL"+str(AS_neighbours))
     DESSINER_DIAGRAMME(Neighbours,Liste,AS)
+
+def indexall(lst, value):
+	return [i for i, v in enumerate(lst) if v == value]
        
 def Remplir_liste_Pays(Dic,Country):
     Labels=[]
     Value=[]
+    power_total=0
+    others=0
     for cle in Dic.keys():
         Labels.append(cle)
+    print(Labels)
     for cle1 in Dic.values():
         Value.append(cle1)
+        power_total=power_total+cle1
+    print(Value)
+    Labels_Delete=[]
+    Value_Delete=[]
+    for clee in Value:
+        if(((clee*100)/power_total) < 4):
+            others=others+clee
+            ind=indexall(Value,clee)
+            print(ind)
+            for h in ind:
+                Labels_Delete.append(Labels[h])
+                Value_Delete.append(Value[h])
+    print(list(set(Labels_Delete)))
+    print(list(set(Value_Delete)))
+
+        
+    Value.append(others)
+    Value=[n for n in Value if n not in Value_Delete]
+    Labels=[n for n in Labels if n not in Labels_Delete]
+    print()
+    print("--------------")
     print(Labels)
     print(Value)
-    DESSINER_DIAGRAMME_Pays(Labels,Value,Country)
+    
+    
+    DESSINER_DIAGRAMME(Labels,Value,Country)
 
 def Remplir_liste_Pays2(Dic,Country,year):
     Labels=[]
     Value=[]
+    power_total=0
+    others=0
     for cle in Dic.keys():
         Labels.append(cle)
     for cle1 in Dic.values():
         Value.append(cle1)
-    print(Labels)
-    print(Value)
+        power_total=power_total+cle1
+    Labels_Delete=[]
+    Value_Delete=[]
+    for clee in Value:
+        if(((clee*100)/power_total) < 4):
+            others=others+clee
+            ind=indexall(Value,clee)
+            for h in ind:
+                Labels_Delete.append(Labels[h])
+                Value_Delete.append(Value[h])
+    print(list(set(Labels_Delete)))
+    print(list(set(Value_Delete)))
+
+        
+    Value.append(others)
+    Value=[n for n in Value if n not in Value_Delete]
+    Labels=[n for n in Labels if n not in Labels_Delete]
+
     DESSINER_DIAGRAMME_Pays2(Labels,Value,Country,year)
 
 
@@ -123,48 +167,45 @@ def Get_Year(Date):
     dateobject = datetime.datetime.strptime(Date,formatt)
     return dateobject.year
 
-def Dessiner_Grantt_Chart(Dic):
-    df=[]
-    for i in Dic.keys():
-        p=Dic[i]
-        df.append(dict(Task=GET_NAME_One_AS(i),Start=str(p[0]),Finish=str(p[1])))
-    fig = ff.create_gantt(df)
-    py.plot(fig, filename='gantt-simple-gantt-chart', world_readable=True)
     
     
 def DESSINER_DIAGRAMME(liste,f,ASN):
     labels=[]
     sizes=[]
+    x=[]
     if(liste!=[]):
-        plt.title("International Transit Providers of "+str(GET_NAME_One_AS(ASN))+" :")
-        labels=GET_NAME(liste)
+        plt.title("International Transit Providers of "+ASN+" :")
+        x=GET_NAME(liste)
+        x.append('Others')
+        labels=x
         sizes=f
-        plt.pie(sizes,autopct='%1.1f%%')
-        plt.legend(labels,bbox_to_anchor=(0.85,1), loc=2, borderaxespad=0.)
         plt.axis('equal')
-        plt.tight_layout()
+        plt.pie(sizes,labels=labels,autopct='%0.1f%%')
+        plt.savefig('C:/Users/abraham/Documents/GitHub/internet-ecosystem-evolution-esib/3-regional-isp/Graphs/'+ASN+'.png',bbox_inches='tight')
+        plt.legend()
         plt.show()
+        
         
     else:
         print("Ce AS ne possede pas de International Transit Providers")
         print()
 
-def DESSINER_DIAGRAMME_Pays(liste,f,Country):
-    fig = {
-        'data': [{'labels': GET_NAME(liste),
-                  'values':f,
-                  'type': 'pie'}],
-        'layout': {'title': 'International Transit Providers of '+Country+ ' are'}
-         }
-    py.plot(fig)
+    
 def DESSINER_DIAGRAMME_Pays2(liste,f,Country,year):
-    fig = {
-        'data': [{'labels': GET_NAME(liste),
-                  'values':f,
-                  'type': 'pie'}],
-        'layout': {'title': 'International Transit Providers of '+Country+ ' in '+str(year)+' are:'}
-         }
-    py.plot(fig)
+    labels=[]
+    sizes=[]
+    x=[]
+    if(liste!=[]):
+        plt.title("International Transit Providers of "+Country+" in " +str(year)+"  are:")
+        x=GET_NAME(liste)
+        x.append('Others')
+        labels=x
+        sizes=f
+        plt.axis('equal')
+        plt.pie(sizes,labels=labels,autopct='%0.1f%%')
+        plt.savefig('C:/Users/abraham/Documents/GitHub/internet-ecosystem-evolution-esib/3-regional-isp/Graphs/'+Country+'_'+str(year)+'.png',bbox_inches='tight')
+        plt.legend()
+        plt.show()
 
 def GET_NAME(liste):
     api ='https://stat.ripe.net/data/whois/data.json?'
@@ -203,26 +244,21 @@ def start():
             break
         else:
             country_asns = get_country_asn(country_code)
-            #print(country_asns)
             country_neighbours = get_country_neighbours(country_code, country_asns)
-            #print(country_neighbours)
-            #c=get_ISP_LB(country_code,country_asns)
-            Remplir_liste_Pays(country_neighbours,country_code)
+            #Remplir_liste_Pays(country_neighbours,country_code)
             print("c'est Fini")
-            i=0
-            year=2008
-            while(i<10):
-                print("Studying year "+str(year))
-                f=ASN_History2(country_code, country_asns,year)
-                Remplir_liste_Pays2(f,country_code,year)
-                i=i+1
-                year=year+1
             Continuer = input("Do you want to see the International Providers of another country: ")
             if(Continuer=='yes' or Continuer=='y'):
                 start()
-            elif(Continuer=='quit' or Continuer=='q'):
-                break
             else:
-                for i in get_country_asn(country_code):
-                    get_neighbours_AS(i,country_asns)
-                
+                i=0
+                year=2008
+                while(i<10):
+                    print("Studying year "+str(year))
+                    f=ASN_History2(country_code, country_asns,year)
+                    Remplir_liste_Pays2(f,country_code,year)
+                    i=i+1
+                    year=year+1
+                elif(Continuer=='quit' or Continuer=='q'):
+                    break
+                    
