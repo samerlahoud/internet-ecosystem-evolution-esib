@@ -5,7 +5,15 @@ Tier 1 providers or backbone provider, exchange Internet traffic with other tier
 Tier 2 on the other hand are service providers which connect between tier 1 and tier 3 providers.<br />
 Finaly Tier 3 ISP are providers that purchase internet transit and redistribute to their clients.<br />
 
-In this project we are going to analyse the international ISPs(Tier 1 and Tier 2) for the MENOG region.This will be possible with the help of RIPE NCC stat where we can extract 
+In this project we are going to analyse the international ISPs for the MENOG region.All the measurements are being extracted from RIPE stat,for this study the data of the current time is being extracted by using the Request.get method witch is a simple HTTP request.
+After the request the data is saved as json format. Json parsing will be the solution for using the information measured.<br />
+
+Figure 1 shows a pie chart of the international transit providers of Lebanon in 2018. As we can see there are 3 major providers in lebanon:Level 3,Tata Communication,SEABONE-NET.These backbone providers will connect Lebanon to the world.We realise that more than 58% of lebanon is covered by Level 3 and one of the reasons of this dependency,could be the very attractive deal between the lebansses ISP and Level 3. However this pourcentage isn't as good as its looks like because there is no redundancy in the lebaneese network.
+
+![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB.png)<br />
+Figure 1
+
+
 
 
 
