@@ -13,7 +13,8 @@ Figure 1 shows a pie chart of the international transit providers of Lebanon in 
 ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB.png)<br />
 Figure 1<br />
 <br />
-Let's if there was any changes for the 10 past years,The table below shows the evolution of the International Providers of Lebanon from 2008 to 2018.
+<br />
+The table below shows the evolution of the International Providers of Lebanon from 2008 to nowadays.
 
 | International Transit Providers in Lebanon | International Transit Providers in Lebanon |
 | ------------- | ------------- |
