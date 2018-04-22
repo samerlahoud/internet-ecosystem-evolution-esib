@@ -14,7 +14,7 @@ Figure 1 shows a pie chart of the international transit providers of Lebanon in 
 Figure 1<br />
 <br />
 <br />
-The table below shows the evolution of the International Providers of Lebanon from 2008 to nowadays.
+The table below shows the evolution of the International Providers of Lebanon from 2008 to 2018.
 
 | International Transit Providers in Lebanon | International Transit Providers in Lebanon |
 | ------------- | ------------- |
