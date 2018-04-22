@@ -1,14 +1,14 @@
 # International ISPs in the Middle East
 
-An ISP(Internet service providers) is a company that provides individuals and other companies access to the internet.An ISP has the equipment to serve a speciic geographic area of internet. The larger ISPs have their own infrastructure so that they are less dependent on the telecommunication providers and can provide better service to their customers. However, there are 3 levels of ISPs. Tier 1, tier 2, and tier 3 providers. 
-Tier 1 providers or backbone provider, exchanges Internet traffic with other tier 1 providers via peering , or to other internet providers via transit.Without these providers there wouldn't be traffic exchange between continents.
-Tier 2 on the other hand is a service providers who connects between tier 1 and tier 3 providers.And finaly Tier 3 ISP is a providers who purchase internet transit and redistribute to their clients.
+An ISP(Internet service providers) is a company that provides individuals and other companies access to the internet.An ISP has the equipment to provide internet to a specific geographic area. The larger ISPs have their own infrastructure so that they are less dependent on the telecommunication providers and can provide better service to their customers. However, there are 3 levels of ISPs. Tier 1, tier 2, and tier 3 providers.<br />
+Tier 1 providers or backbone provider, exchange Internet traffic with other tier 1 providers via peering , or with other internet providers via transit.Without these providers there wouldn't be traffic exchange between continents.<br />
+Tier 2 on the other hand are service providers which connect between tier 1 and tier 3 providers.<br />
+Finaly Tier 3 ISP are providers that purchase internet transit and redistribute to their clients.<br />
 
-In this project we are going to analyse the Tier 1 and Tier 2  international ISPs for the MENOG region 
+In this project we are going to analyse the international ISPs(Tier 1 and Tier 2) for the MENOG region.This will be possible with the help of RIPE NCC stat where we can extract 
 
 
 
-This project consists in analyzing the international ISPs for the Middle East (MENOG region).
 
 
 
