@@ -1,10 +1,16 @@
 # International ISPs in the Middle East
 
+An ISP(Internet service providers) is a company that provides individuals and other companies access to the internet.An ISP has the equipment to serve a speciic geographic area of internet. The larger ISPs have their own infrastructure so that they are less dependent on the telecommunication providers and can provide better service to their customers. However, there are 3 levels of ISPs. Tier 1, tier 2, and tier 3 providers. 
+Tier 1 providers or backbone provider, exchanges Internet traffic with other tier 1 providers via peering , or to other internet providers via transit.Without these providers there wouldn't be traffic exchange between continents.
+Tier 2 on the other hand is a service providers who connects between tier 1 and tier 3 providers.And finaly Tier 3 ISP is a providers who purchase internet transit and redistribute to their clients.
+
+In this project we are going to analyse the Tier 1 and Tier 2  international ISPs for the MENOG region 
+
+
+
 This project consists in analyzing the international ISPs for the Middle East (MENOG region).
 
-First of all we are going to identify the different International ISP who covers Lebanon and their parts respectivly.
-With the Help of the RipeStat it will be possible to extract the number of paths by using the get.request url method.
-Like we can see in this Graph below:
+
 
 | International Transit Providers in Lebanon | International Transit Providers in Lebanon |
 | ------------- | ------------- |
@@ -18,17 +24,4 @@ Like we can see in this Graph below:
 
 
 
-## Features
-* Lebanon statistics
-* Global statistics
-* Changes for the ten past years
-* Satellite providers in Lebanon
-* Latency comparison for different international ISPs
 
-## Tools and Data
-* AS neighbors from RIPE Stat or bgp.potaroo.net
-* RIPE Atlas measurement
-* Plot libraries
-
-## Example
-http://internet-today.lahoud.fr/routing-report.html
