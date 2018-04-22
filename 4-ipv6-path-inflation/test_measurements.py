@@ -36,19 +36,16 @@ total_hop_v6=[]
 total_hop_v4=[]
 
 for i in range(len(my_result_v6)):
-    total_hop_v6.append(my_result_v6[i].total_hops)
-for i in range(len(my_result_v4)):
-    total_hop_v4.append(my_result_v4[i].total_hops)
+      if my_result_v6[i].is_success and my_result_v4[i].is_success:
+          total_hop_v6.append(my_result_v6[i].total_hops)
+          total_hop_v4.append(my_result_v4[i].total_hops)
+    
 rtt_v6=[]
 rtt_v4=[]
 for i in range(len(my_result_v6)):
-      if my_result_v6[i].is_success:
+      if my_result_v6[i].is_success and my_result_v4[i].is_success:
           rtt_v6.append(my_result_v6[i].last_median_rtt)
-
-for i in range(len(my_result_v4)):
-      if my_result_v4[i].is_success:
           rtt_v4.append(my_result_v4[i].last_median_rtt)
-
 
 #print(total_hop_v6)
 #print(total_hop_v4)
@@ -66,7 +63,7 @@ for i in range(len(rtt_v6)):
 print(diff_rtt)
 
 bin1=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-plt.hist(diff_hopes,bin1)
+#plt.hist(diff_hopes,bin1)
 plt.xlabel("difference in number of hopes between v4&v6")
 plt.ylabel("frequency")
 plt.grid(True)
@@ -76,7 +73,7 @@ filename=date().strftime('%d%m%Y%H%M%S')+".png"
 plt.savefig("E:\semestre 4\ecosysteme et evolution de l'Internet\plots\Hop\{}".format(filename))
 
 bin2=[0,10,20,30,50,100]
-plt.hist(diff_rtt,bin2)
+#plt.hist(diff_rtt,bin2)
 plt.xlabel("difference in value of RTT between v4&v6")
 plt.ylabel("frequency")
 plt.grid(True)
