@@ -1,10 +1,19 @@
 # International ISPs in the Middle East
 
-This project consists in analyzing the international ISPs for the Middle East (MENOG region).
+An ISP(Internet service providers) is a company that provides individuals and other companies access to the internet.An ISP has the equipment to provide internet to a specific geographic area. The larger ISPs have their own infrastructure so that they are less dependent on the telecommunication providers and can provide better service to their customers. However, there are 3 levels of ISPs. Tier 1, tier 2, and tier 3 providers.<br />
+Tier 1 providers or backbone provider, exchange Internet traffic with other tier 1 providers via peering , or with other internet providers via transit.Without these providers there wouldn't be traffic exchange between continents.<br />
+Tier 2 on the other hand are service providers which connect between tier 1 and tier 3 providers.<br />
+Finaly Tier 3 ISP are providers that purchase internet transit and redistribute to their clients.<br />
 
-First of all we are going to identify the different International ISP who covers Lebanon and their parts respectivly.
-With the Help of the RipeStat it will be possible to extract the number of paths by using the get.request url method.
-Like we can see in this Graph below:
+In this project we are going to analyse the international ISPs for the MENOG region.All the measurements are being extracted from RIPE stat,for this study the data of the current time is being extracted by using the Request.get method witch is a simple HTTP request.
+After the request the data is saved as json format. Json parsing will be the solution for using the information measured.<br />
+
+Figure 1 shows a pie chart of the international transit providers of Lebanon in 2018. As we can see there are 3 major providers in lebanon:Level 3,Tata Communication,SEABONE-NET.These backbone providers will connect Lebanon to the world.We realise that more than 58% of lebanon is covered by Level 3 and one of the reasons of this dependency,could be the very attractive deal between the lebansses ISP and Level 3. However this pourcentage isn't as good as its looks like because there is no redundancy in the lebaneese network.
+
+![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB.png)<br />
+Figure 1<br />
+<br />
+Let's if there was any changes for the 10 past years,The table below shows the evolution of the International Providers of Lebanon from 2008 to 2018.
 
 | International Transit Providers in Lebanon | International Transit Providers in Lebanon |
 | ------------- | ------------- |
@@ -18,17 +27,4 @@ Like we can see in this Graph below:
 
 
 
-## Features
-* Lebanon statistics
-* Global statistics
-* Changes for the ten past years
-* Satellite providers in Lebanon
-* Latency comparison for different international ISPs
 
-## Tools and Data
-* AS neighbors from RIPE Stat or bgp.potaroo.net
-* RIPE Atlas measurement
-* Plot libraries
-
-## Example
-http://internet-today.lahoud.fr/routing-report.html
