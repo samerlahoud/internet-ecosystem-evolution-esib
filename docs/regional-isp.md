@@ -14,7 +14,8 @@ Figure 1 shows a pie chart of the international transit providers of Lebanon in 
 Figure 1<br />
 <br />
 <br />
-The table below shows the evolution of the International Providers of Lebanon from 2008 to 2018.
+The table below shows the evolution of the International Providers of Lebanon from 2008 to 2018.<br />
+As we can see 
 
 | International Transit Providers in Lebanon | International Transit Providers in Lebanon |
 | ------------- | ------------- |
@@ -24,7 +25,10 @@ The table below shows the evolution of the International Providers of Lebanon fr
 | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2015.png)  | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2016.png) |
 | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2017.png)  | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB.png)  |
 
+As we can see, the providers and their coverage changes from year to year,however some of them are still playing since 2008 a very important role in the connection of Lebanon with the world,like level 3.This backbone provider covered from 15 to  30% of Lebanon since 2010, this is an other reason that lebanon is dependent of level 3. <br />
+On the other hand some of the International providers like BTT reduced their coverage in lebanon like we can see in 2008 they covered more than 30% of lebanon and next year that coverage was reduced by half, one of the reasons of this fall could be the more attractive deals with other providers.After 2013 BTN covered less than 4% of lebanon.The years go by, new providers covers Lebanon and the old providers loses their coverage until it reach a pourcentage less than 4%.<br />
 
+After analysing the International ISP in Lebanon and their evolution during the last 10 years,we are going to analyse the International transit providers of the Arab Eirate in 2018, and than see the difference between the Trnsit providers of Lebanon.
 
 
 
