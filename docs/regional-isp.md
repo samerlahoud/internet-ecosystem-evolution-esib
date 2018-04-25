@@ -19,7 +19,7 @@ As we can see
 
 | International Transit Providers in Lebanon | International Transit Providers in Lebanon |
 | ------------- | ------------- |
-| ![plot LB](/3-regional-isp/Graphs/LB/LB_2008.png)  | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2009.png) |
+| ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/LB/LB_2008.png)  | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2009.png) |
 | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2010.png)  | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2011.png) |
 | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2013.png)  | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2014.png) |
 | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2015.png)  | ![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB_2016.png) |
