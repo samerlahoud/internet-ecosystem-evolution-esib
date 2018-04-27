@@ -100,215 +100,72 @@ source_IQ = AtlasSource(
 )
 
 
-vector_ID_v6=[]
-vector_ID_v4=[]
+measurement_v6=[]
+measurement_v6.append(traceroute1)
+measurement_v6.append(traceroute2)
+measurement_v6.append(traceroute3)
+measurement_v6.append(traceroute4)
+measurement_v6.append(traceroute5)
+measurement_v6.append(traceroute6)
+measurement_v6.append(traceroute7)
+measurement_v6.append(traceroute8)
 
+measurement_v4=[]
+measurement_v4.append(traceroute9)
+measurement_v4.append(traceroute10)
+measurement_v4.append(traceroute11)
+measurement_v4.append(traceroute12)
+measurement_v4.append(traceroute13)
+measurement_v4.append(traceroute14)
+measurement_v4.append(traceroute15)
+measurement_v4.append(traceroute16)
+#Probes sources:
+probes=[]
+probes.append(source_LB_1)
+probes.append(source_LB_2)
+#probes.append(source_LB_3)
+probes.append(source_IR_1)
+#probes.append(source_IR_2)
+probes.append(source_IR_3)
+probes.append(source_TR_1)
+probes.append(source_TR_2)
+probes.append(source_TR_3)
+probes.append(source_OM)
+probes.append(source_QA)
+#probes.append(source_IQ)
+#print (sources)
+file = open("C:/Users/Florian Mouchantaf/Desktop/ipv6.txt",'w')
+for j in measurement_v6:
+    for i in probes:
+        atlas_request = AtlasCreateRequest(
+            #start_time=datetime.utcnow(),
+            key=ATLAS_API_KEY,
+            measurements=[j],
+            sources=[i],
+            is_oneoff=True
+        )
+        (is_success, response) = atlas_request.create()
+        #print(is_success)
+        msm_id =response['measurements'][0]
+        #print(msm_id)
+        file.write(str(msm_id)+"\n")
+    time.sleep(30)
+file.close()
 
+file = open("C:/Users/Florian Mouchantaf/Desktop/ipv4.txt",'w')
+for j in measurement_v4:
+    for i in probes:
+        atlas_request = AtlasCreateRequest(
+            #start_time=datetime.utcnow(),
+            key=ATLAS_API_KEY,
+            measurements=[j],
+            sources=[i],
+            is_oneoff=True
+        )
+        (is_success, response) = atlas_request.create()
+        msm_id =response['measurements'][0]
+        #print(msm_id)
+        file.write(str(msm_id)+"\n")
+    time.sleep(30)
+file.close()
 
-
-
-#IPV6 measurements:
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute1],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v6.append(msm_id)
-
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute2],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v6.append(msm_id)
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute3],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v6.append(msm_id)
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute4],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v6.append(msm_id)
-
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute5],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v6.append(msm_id)
-
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute6],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v6.append(msm_id)
-
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute7],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v6.append(msm_id)
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute8],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v6.append(msm_id)
-
-
-
-# ipv4 measurements:
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute9],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v4.append(msm_id)
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute10],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v4.append(msm_id)
-
-
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute11],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v4.append(msm_id)
-
-
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute12],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v4.append(msm_id)
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute13],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v4.append(msm_id)
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute14],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v4.append(msm_id)
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute15],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v4.append(msm_id)
-
-
-atlas_request = AtlasCreateRequest(
-   # start_time=datetime.utcnow(),
-    key=ATLAS_API_KEY,
-    measurements=[traceroute16],
-    sources=[source_LB_1,source_LB_2,source_LB_3,source_IR_1,source_IR_2,source_IR_3,source_TR_1,source_TR_2,source_TR_3,source_OM,source_QA,source_IQ],
-    is_oneoff=True
-)
-(is_success, response) = atlas_request.create()
-#print (response)
-msm_id =response['measurements']
-vector_ID_v4.append(msm_id)
