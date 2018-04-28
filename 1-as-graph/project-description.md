@@ -11,8 +11,9 @@ This project consists in visualizing the interconnection of autonomous systems (
 
 ## Tools and Data
 * AS neighbors from RIPE Stat or bgp.potaroo.net
-* Dynamic graph visualization tool
+* Dynamic graph visualization tool (cf. https://github.com/samerlahoud/graph-tools)
 
 ## Example
 http://internet-today.lahoud.fr/as-graph-ipv4.html
+
 http://cyber.harvard.edu/netmaps/geo_map_home.php?cc=LB
