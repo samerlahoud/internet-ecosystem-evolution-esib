@@ -22,8 +22,8 @@ atlas_request = AtlasCreateRequest(
             sources=[source_LB_1],
             is_oneoff=False,
             interval=180,
-            start_time=1524909867,
-            stop_time=1524910867
+            start_time=1524908400,
+            stop_time=1524910500
         )
 (is_success, response) = atlas_request.create()
 print(is_success)
