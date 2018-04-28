@@ -19,3 +19,12 @@ This repository contains the contributions of the student projects in the course
 ## Deliverables on Github
 * Working code
 * Technical document for analytics
+
+## Article Examples and Interesting Links
+https://www.potaroo.net/ispcol/2018-01/bgp2017.html
+
+https://www.potaroo.net
+
+https://blog.apnic.net
+
+https://labs.ripe.net
