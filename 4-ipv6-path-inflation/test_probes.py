@@ -7,6 +7,7 @@ from ripe.atlas.cousteau import (
 )
 from ripe.atlas.cousteau import AtlasResultsRequest
 import requests
+import time
 ATLAS_API_KEY = "df5d3613-6c53-43be-bdad-cb921ffd20cf"
 traceroute1 = Traceroute(af=6, target="jp-tyo-as2500.anchors.atlas.ripe.net", description="traceroute  to Japan", protocol="ICMP")
 traceroute2 = Traceroute(af=6, target="za-cpt-as37663.anchors.atlas.ripe.net", description="traceroute  to South Africa", protocol="ICMP")
@@ -148,9 +149,9 @@ for j in measurement_v6:
         #print(is_success)
         msm_id =response['measurements'][0]
         #print(msm_id)
-        file.write(str(msm_id)+"\n")
-    time.sleep(30)
+        file.write(str(msm_id)+"\n") 
 file.close()
+time.sleep(600)
 
 file = open("C:/Users/Florian Mouchantaf/Desktop/ipv4.txt",'w')
 for j in measurement_v4:
@@ -168,4 +169,5 @@ for j in measurement_v4:
         file.write(str(msm_id)+"\n")
     time.sleep(30)
 file.close()
+
 
