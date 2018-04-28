@@ -20,12 +20,13 @@ atlas_request = AtlasCreateRequest(
             key=ATLAS_API_KEY,
             measurements=[traceroute16],
             sources=[source_LB_1],
-            is_oneoff=False
-            interval=180
-            start_time=1524898200
-            stop_time=1524899100
+            is_oneoff=False,
+            interval=180,
+            start_time=1524909867,
+            stop_time=1524910867
         )
 (is_success, response) = atlas_request.create()
-        #print(is_success)
+print(is_success)
+print(response)
 msm_id =response['measurements'][0]
 print(msm_id)
