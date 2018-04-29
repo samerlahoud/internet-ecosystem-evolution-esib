@@ -10,7 +10,7 @@ After the request the data is saved as json format. Json parsing will be the sol
 
 Figure 1 shows a pie chart of the international transit providers of Lebanon in 2018. As we can see there are 3 major providers in lebanon:Level 3,Tata Communication,SEABONE-NET.These backbone providers will connect Lebanon to the world.We realise that more than 58% of lebanon is covered by Level 3 and one of the reasons of this dependency,could be the very attractive deal between the lebansses ISP and Level 3. However this pourcentage isn't as good as its looks like because there is no redundancy in the lebaneese network.
 
-![plot LB](https://github.com/samerlahoud/internet-ecosystem-evolution-esib/blob/master/3-regional-isp/Graphs/LB/LB.png)<br />
+ ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/LB/LB.png) <br />
 Figure 1<br />
 <br />
 <br />
