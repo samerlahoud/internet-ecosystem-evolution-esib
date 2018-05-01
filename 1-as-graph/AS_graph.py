@@ -36,6 +36,6 @@ def get_country_neighbours(country_code, country_asns):
                 if (neighbour_asn not in clients):
                     clients[neighbour_asn] = neighbour_power
                 else:
-                    providers[neighbour_asn] = providers[neighbour_asn] + neighbour_power
+                    clients[neighbour_asn] = clients[neighbour_asn] + neighbour_power
     return (providers, clients)
 
