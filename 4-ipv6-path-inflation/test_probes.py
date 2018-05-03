@@ -9,23 +9,23 @@ from ripe.atlas.cousteau import AtlasResultsRequest
 import requests
 import time
 ATLAS_API_KEY = "df5d3613-6c53-43be-bdad-cb921ffd20cf"
-traceroute1 = Traceroute(af=6, target="jp-tyo-as2500.anchors.atlas.ripe.net", description="traceroute  to Japan",interval=36000, protocol="ICMP")
-traceroute2 = Traceroute(af=6, target="za-cpt-as37663.anchors.atlas.ripe.net", description="traceroute  to South Africa",interval=36000, protocol="ICMP")
-traceroute3 = Traceroute(af=6, target="fr-bod-as198985.anchors.atlas.ripe.net", description="traceroute to France Bordeaux", interval=36000, protocol="ICMP")
-traceroute4 = Traceroute(af=6, target="kw-kwi-as42961.anchors.atlas.ripe.net", description="traceroute to Kuwait", interval=36000, protocol="ICMP")
-traceroute5 = Traceroute(af=6, target="uy-mvd-as28000.anchors.atlas.ripe.net", description="traceroute to Uruguay",interval=36000, protocol="ICMP")
-traceroute6 = Traceroute(af=6, target="ca-mtr-as852.anchors.atlas.ripe.net", description="traceroute to Montreal",interval=36000, protocol="ICMP")
-traceroute7 = Traceroute(af=6, target="in-bom-as33480.anchors.atlas.ripe.net", description="traceroute to Inde",interval=36000, protocol="ICMP")
-traceroute8 = Traceroute(af=6, target="es-leg-as766.anchors.atlas.ripe.net", description="traceroute to Spain",interval=36000, protocol="ICMP")
+traceroute1 = Traceroute(af=6, target="jp-tyo-as2500.anchors.atlas.ripe.net", description="traceroute  to Japan",interval=10800, protocol="ICMP")
+traceroute2 = Traceroute(af=6, target="za-cpt-as37663.anchors.atlas.ripe.net", description="traceroute  to South Africa",interval=10800, protocol="ICMP")
+traceroute3 = Traceroute(af=6, target="fr-bod-as198985.anchors.atlas.ripe.net", description="traceroute to France Bordeaux", interval=10800, protocol="ICMP")
+traceroute4 = Traceroute(af=6, target="kw-kwi-as42961.anchors.atlas.ripe.net", description="traceroute to Kuwait", interval=10800, protocol="ICMP")
+traceroute5 = Traceroute(af=6, target="uy-mvd-as28000.anchors.atlas.ripe.net", description="traceroute to Uruguay",interval=10800, protocol="ICMP")
+traceroute6 = Traceroute(af=6, target="ca-mtr-as852.anchors.atlas.ripe.net", description="traceroute to Montreal",interval=10800, protocol="ICMP")
+traceroute7 = Traceroute(af=6, target="in-bom-as33480.anchors.atlas.ripe.net", description="traceroute to Inde",interval=10800, protocol="ICMP")
+traceroute8 = Traceroute(af=6, target="es-leg-as766.anchors.atlas.ripe.net", description="traceroute to Spain",interval=10800, protocol="ICMP")
 
-traceroute9 = Traceroute(af=4, target="jp-tyo-as2500.anchors.atlas.ripe.net", description="traceroute v4 to Japan",interval=36000, protocol="ICMP")
-traceroute10 = Traceroute(af=4, target="za-cpt-as37663.anchors.atlas.ripe.net", description="traceroute v4 to South Africa",interval=36000, protocol="ICMP")
-traceroute11 = Traceroute(af=4, target="fr-bod-as198985.anchors.atlas.ripe.net", description="traceroute v4 to France Bordeaux",interval=36000, protocol="ICMP")
-traceroute12 = Traceroute(af=4, target="kw-kwi-as42961.anchors.atlas.ripe.net", description="traceroute v4 to Kuwait",interval=36000, protocol="ICMP")
-traceroute13 = Traceroute(af=4, target="uy-mvd-as28000.anchors.atlas.ripe.net", description="traceroute v4 to Uruguay",interval=36000, protocol="ICMP")
-traceroute14 = Traceroute(af=4, target="ca-mtr-as852.anchors.atlas.ripe.net", description="traceroute v4 to Montreal",interval=36000, protocol="ICMP")
-traceroute15 = Traceroute(af=4, target="in-bom-as33480.anchors.atlas.ripe.net", description="traceroute v4 to Inde",interval=36000, protocol="ICMP")
-traceroute16 = Traceroute(af=4, target="es-leg-as766.anchors.atlas.ripe.net", description="traceroute v4 to Spain",interval=36000, protocol="ICMP")
+traceroute9 = Traceroute(af=4, target="jp-tyo-as2500.anchors.atlas.ripe.net", description="traceroute v4 to Japan",interval=10800, protocol="ICMP")
+traceroute10 = Traceroute(af=4, target="za-cpt-as37663.anchors.atlas.ripe.net", description="traceroute v4 to South Africa",interval=10800, protocol="ICMP")
+traceroute11 = Traceroute(af=4, target="fr-bod-as198985.anchors.atlas.ripe.net", description="traceroute v4 to France Bordeaux",interval=10800, protocol="ICMP")
+traceroute12 = Traceroute(af=4, target="kw-kwi-as42961.anchors.atlas.ripe.net", description="traceroute v4 to Kuwait",interval=10800, protocol="ICMP")
+traceroute13 = Traceroute(af=4, target="uy-mvd-as28000.anchors.atlas.ripe.net", description="traceroute v4 to Uruguay",interval=10800, protocol="ICMP")
+traceroute14 = Traceroute(af=4, target="ca-mtr-as852.anchors.atlas.ripe.net", description="traceroute v4 to Montreal",interval=10800, protocol="ICMP")
+traceroute15 = Traceroute(af=4, target="in-bom-as33480.anchors.atlas.ripe.net", description="traceroute v4 to Inde",interval=10800, protocol="ICMP")
+traceroute16 = Traceroute(af=4, target="es-leg-as766.anchors.atlas.ripe.net", description="traceroute v4 to Spain",interval=10800, protocol="ICMP")
 
 source_LB_1 = AtlasSource(
     type="asn",
@@ -144,7 +144,7 @@ for j in measurement_v6:
             measurements=[j],
             sources=[i],
             is_oneoff=False,
-            start_time=1525359600,
+            start_time=1525366800,
             stop_time=1527865200
         )
         (is_success, response) = atlas_request.create()
@@ -153,7 +153,7 @@ for j in measurement_v6:
         #print(msm_id)
         file.write(str(msm_id)+"\n") 
 file.close()
-time.sleep(600)
+time.sleep(200)
 
 file = open("C:/Users/Florian Mouchantaf/Desktop/ipv4.txt",'w')
 for j in measurement_v4:
@@ -164,7 +164,7 @@ for j in measurement_v4:
             measurements=[j],
             sources=[i],
             is_oneoff=False,
-            start_time=1525359600,
+            start_time=1525366800,
             stop_time=1527865200
         )
         (is_success, response) = atlas_request.create()
