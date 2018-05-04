@@ -1,0 +1,120 @@
+From https://stat.ripe.net/
+
+'61113’: CAPITALOUTSOURCING - Capital Outsourcing SAL
+'43019’: FARAHNET - farahnet 
+'12812’: ASN-AUBNET # AS-AUBNET CONVERTED TO ASN-AUBNET FOR RPSL COMPLIANCE - AMERICAN UNIVERSITY of BEIRUT
+'35074’: COBRANET-AS - Cobranet Limited
+'42003’: OGERONET - LIBANTELECOM
+'202772’: AXA-AS - AXA Middle East SAL
+'59931’: LEBOL-AS - Lebanon Online Company -SARL-
+'42020’: LIBANTELECOM
+'197674’: WIN-DSL-ASN - WIN DSL s.a.r.l
+'43056’: I-SHACK - DOT SARL
+'59955’: ABS - Advanced Broadband Services S.A.L
+'34356’: FCNISP - Fiber Communication Network S.A.R.L
+'24634’: CYBERIA-AS - Transmog Inc S.A.L
+'206911’: CREDITBANK-AS - Creditbank S.A.L.
+'34370’: CSC - CSCBank SAL
+'206406’: CBEY - C BEYOND s.a.l
+'60999’: LIBATECH-AS - Libatech SAL
+'48206’: NETPRO - Net Pro sarl
+'56333’: WITECH - WI-TECH wireless technologies S.A.R.L
+'57937’: SAMA - Sama S.A.L. Offshore
+'29027’: CHAWICH - CHAWICH GROUP LTD
+'47701’: BAU-AS - BEIRUT ARAB UNIVERSITY(BAU)
+'38999’: MTCTOUCH - Mobile Interim Company no.2 sal
+'39010’: TERRANET-AS - TerraNet sal
+'48740’: OMT-AS - Online Money Transfer S.A.L.
+'47719’: SWITCHTEL-AS - Switch Telecom s.a.r.l
+'3176’: BDL - Banque Du Liban
+'50285’: ONETPLUS-AS - onetplus
+'197249’: TASJIL-PRODUCTION-AS - tasjil art production and distributions S.A.L.
+'206472’: USJ - Saint-Joseph University of Beirut
+'60524’: LAF1 - Lebanese Armed Forces
+'204429’: SMARTCITY - Smart City SARL
+'34447’: ASMYISPLB - My ISP SARL
+'62100’: ASKASSIR - Mahmoud El Kasir trading as KASIR NETWORKS
+'15511’: LB-ICONNECT - iconnect sarl
+'34458’: SMARTNETSLB - Smart Networks S.a.r.l
+'44189’: MEA - Middle East Airlines AirLiban S.A.L. (M.E.A)
+'31390’: BRAVENETLB - BRAVENET SARL
+'57513’: MIC1-ALFA-AS - Mobile interim company 1 S.A.L.
+'206519’: ZINA - ZINA sarl
+'47289’: TECHNO - TECHNO ZONE SARL
+'206197’: BLOM-AS - BLOM BANK S.A.L.
+'62144’: BBAC-AS - BBAC S.A.L.
+‘25281’: MTM-AS - MTM s.a.r.l
+'51910’: TWW-AS - Teltac WorldWide INC
+'42183’: NET360 - NET 360 S.A.R.L
+'56530’: PRTL - PROTEL SAL OFFSHORE
+'198867’: COMPUTEL - Computel SAL
+'206550’: CTCSAL - CTC SAL
+'3290’: WIFAST - WIFAST SARL
+'48847’: CONNECT - WAVES S.A.L
+'51938’: MEDSYSTEMS - MedSystems s.a.l.
+'34032’: SPIDER - SPIDER NET & CO. SARL
+'13044': ASAOUN - Aoun.net s.a.r.l
+'41211': BLF - La Banque Libano-Francaise S.A.L.
+'16130': Fiberlink Networks
+'57604': OKDI - OKDI For Trading And Services Sarl
+'205578': ORG-GSL24-RIPE - Directorate General of General Security
+'34062': GCGROUP-AS - GCGROUP S.A.R.L
+'16169': ASREMINI - REMINI TELECOM s.a.r.l
+'12590': DOTSPOT - THE DOT SPOT NET SARL
+'43824': MASCO-AS - Masco Group
+'203913': ARCOMPUS-MEDIANET-AS - Arcompus Medianet Int. SARL
+'24892': ASLIBALINK - Libalink SARL
+'47935': COMTINUUM-AS - M Nets SAL
+'34113': NS-REALISP1 - Real-ISP SARL
+'203586': USEK-AS - Holy Spirit University of Kaslik
+'50500': BITARISP2016 - BITAR NET SARL
+'44870': A-IX - Advanced IX SAL
+'201544': CIMNAT-AS - Cimenterie Nationale SAL
+‘42828': TOPNETLB-AS - Top Net SARL
+'42835': ASLIBANCOM - LIBAN-COM Limited Partnership
+'206169': SGBL - Societe Generale De Banque Au Liban SAL
+'9051': IncoNet Data Management sal
+'42334': BBP-AS - Broadband Plus S.a.l.
+'203615': DATACONSULT - DATA CONSULT SAL
+'31587': AHN - AHN s.a.r.l
+'42852': BCDBBN-AS - Societe Libanaise pour le developpement et la reconstruction du centre ville de de Beyrouth (Solidere)
+'51558': SMTLB-AS - Smart Telecom S.A.R.L
+'41833': MOSCANET - Moscanet SAL
+'39275': BYBLOS - Byblos Bank S.A.L.
+'31037': WAVENET - Wave Net LLC
+'203637': BSLBANK - BSL BANK SAL
+'15739': BERYTECH-AS - Berytech SCAL
+'49020': FSN - Elie Achkar trading as FiberSkynet
+'35197': VISP-LB-AS - Virtual ISP s.a.l.
+'25471': ASBSMART - B_SMART.NET S.A.R.L
+'24982': BANKMED - BankMed sal
+'20874': INFOSYS - Information Systems Company
+'50839': COMPULIFEAS - Compulife SAL
+'29070': GIGABIT - GIGABIT S.A.L
+'61330': ECONSULT - Econsult Technology SARL
+'25491': ASBASIC - Basic ISP s.a.r.l.
+'34708': GRD - Gulf Research & Development Company
+'60398': CITCO - Communication and International Trading Company S.A.R.L
+'31126': SODETEL-AS - SODETEL S.A.L
+'57256': PROS - Pros-Services S.A.R.L.
+'29099': MATRIX-LB - Matrix International SARL
+'57778': MICROSMARTLB - Elie Achkar trading as Micro Smart System
+'44979': ADMINS-LB-ASN - ADMINS LEBANON S.A.R.L
+'34741': BOB - Bank of Beirut s.a.l.
+'29623': HSPL - HIGH SPEED PROFESSIONAL LINKS, SARL
+'205556': ANTWORK-AS - Antwork LTD
+'64443': SKYWAVES - Sky Waves SARL
+'39868': FRANSABANK - FRANSABANK SAL
+'41423': ASNEWNET - New Net "Technology" SARL
+'50131': FRESH - Fresh SAL JSC
+'60372': EAGLENET - EagleNet s.a.r.l.
+'199643': ALU-LB-AS - Lebanese American University
+'41956': MNETS - M Nets SAL
+'39402': FERRARINETWORKS-AS - FERRARI-NETWORKS S.A.R.L.
+'39918': AZALGROUP - Azal Group Holding SAL
+'48629': ICLIK - ICLIK SARL
+'60406': ALJADEED - ALJADEED S.A.L
+'58281': FIDUS-SAL - FIDUS S.A.L
+'8699': FIBERWAVES-AS - Fiberwaves S.A.L
+'57852': CSP - CLOUD S P SARL
+'59989’: THGLOBALVISION16 - T.H. Global Vision SARL
