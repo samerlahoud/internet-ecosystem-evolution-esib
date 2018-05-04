@@ -45,16 +45,29 @@ def get_country_neighbours(country_code, country_asns):
                     country_neighbours[neighbour_asn] = country_neighbours[neighbour_asn] + neighbour_power
     return country_neighbours
 
-def get_ISP_LB(country_code,country_asns):
-    Liste=[]
+def get_ISP_LB(country_asns):
+    Liste={}
+    #https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS9051
     for asn in country_asns:
-        api_url = '{}asn-neighbours/data.json?resource={}&lod=1'.format(api_url_base, asn)
-        asn_neighbours_json = requests.get(api_url).json()
-        for neighbour in asn_neighbours_json['data']['neighbours']:
-            neighbour_asn = str(neighbour['asn'])
-            if (neighbour['type']=='left' and neighbour_asn in country_asns):
-                Liste.append(neighbour_asn)
-    return list(set(Liste))
+        if(asn!="42020"):
+            api_url = '{}asn-neighbours/data.json?resource={}'.format(api_url_base, asn)
+            asn_neighbours_json = requests.get(api_url).json()
+            for neighbour in asn_neighbours_json['data']['neighbours']:
+                neighbour_asn = str(neighbour['asn'])
+                if (neighbour['type']=='left' and neighbour_asn not in country_asns):
+                    Liste[asn]=neighbour_asn
+    print(Liste)
+    Transforme_Dic_Liste(Liste)
+    
+def Transforme_Dic_Liste(dic):
+    Cle=[]
+    Value=[]
+    for i in dic.keys():
+        Cle.append(i)
+    for j in dic.values():
+        Value.append(j)
+    x=get_country_neighbours('LB', Cle)
+    print(x)
     
 
 def get_neighbours_AS(AS,country_asns):
@@ -69,9 +82,7 @@ def get_neighbours_AS(AS,country_asns):
         if (neighbour['type']=='left' and neighbour_asn not in country_asns):
             Neighbours.append(neighbour_asn)
             Liste.append(neighbour_power)
-    #print("INT:"+str(Neighbours)+"Valwue:"+str(Liste))
     AS_neighbours[AS]=Liste
-    #print("LOLLLLL"+str(AS_neighbours))
     DESSINER_DIAGRAMME(Neighbours,Liste,AS)
 
 def indexall(lst, value):
@@ -92,7 +103,7 @@ def Remplir_liste_Pays(Dic,Country):
     Labels_Delete=[]
     Value_Delete=[]
     for clee in Value:
-        if(((clee*100)/power_total) < 4):
+        if(((clee*100)/power_total) < 4):           #on ajoute tous les AS avec un pourcentage moins que 4% dans la categorie Others
             others=others+clee
             ind=indexall(Value,clee)
             print(ind)
@@ -102,7 +113,7 @@ def Remplir_liste_Pays(Dic,Country):
     print(list(set(Labels_Delete)))
     print(list(set(Value_Delete)))
 
-        
+       
     Value.append(others)
     Value=[n for n in Value if n not in Value_Delete]
     Labels=[n for n in Labels if n not in Labels_Delete]
@@ -127,7 +138,7 @@ def Remplir_liste_Pays2(Dic,Country,year):
     Labels_Delete=[]
     Value_Delete=[]
     for clee in Value:
-        if(((clee*100)/power_total) < 4):
+        if(((clee*100)/power_total) < 4):   #on ajoute tous les AS avec un pourcentage moins que 4% dans la categorie Others
             others=others+clee
             ind=indexall(Value,clee)
             for h in ind:
@@ -148,7 +159,7 @@ def ASN_History2(country_code, country_asns,year):
     #URL=https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS42020&starttime=2008-12-01T12:00:00
     country_neighbours={}
     for asn in country_asns:
-        api_url = '{}asn-neighbours/data.json?resource={}&starttime={}-12-01T12:00:00'.format(api_url_base,asn,year)
+        api_url = '{}asn-neighbours/data.json?resource={}&starttime={}-10-01T12:00:00'.format(api_url_base,asn,year)
         asn_neighbours_json = requests.get(api_url).json()
         for neighbour in asn_neighbours_json['data']['neighbours']:
             neighbour_asn = str(neighbour['asn'])
@@ -203,7 +214,7 @@ def DESSINER_DIAGRAMME_Pays2(liste,f,Country,year):
         sizes=f
         plt.axis('equal')
         plt.pie(sizes,labels=labels,autopct='%0.1f%%')
-        plt.savefig('C:/Users/abraham/Documents/GitHub/internet-ecosystem-evolution-esib/3-regional-isp/Graphs/'+Country+'_'+str(year)+'.png',bbox_inches='tight')
+        plt.savefig('C:/Users/abraham/Documents/GitHub/internet-ecosystem-evolution-esib/3-regional-isp/Graphs/LB/'+Country+'_'+str(year)+'.png',bbox_inches='tight')
         plt.legend()
         plt.show()
 
@@ -237,6 +248,7 @@ def GET_NAME_One_AS(AS):
                     Names.append(j['value'])
     return Names
 
+
 def start():     
     while True:
         country_code = input('Country two-letter code: ')
@@ -245,7 +257,11 @@ def start():
         else:
             country_asns = get_country_asn(country_code)
             country_neighbours = get_country_neighbours(country_code, country_asns)
-            #Remplir_liste_Pays(country_neighbours,country_code)
+            #get_ISP_LB(country_asns)
+            print()
+            print()
+            print("hehe"+str(country_neighbours))
+            Remplir_liste_Pays(country_neighbours,country_code)
             print("c'est Fini")
             Continuer = input("Do you want to see the International Providers of another country: ")
             if(Continuer=='yes' or Continuer=='y'):
@@ -259,6 +275,5 @@ def start():
                     Remplir_liste_Pays2(f,country_code,year)
                     i=i+1
                     year=year+1
-                elif(Continuer=='quit' or Continuer=='q'):
-                    break
+                    
                     
