@@ -30,12 +30,12 @@ On the other hand some of the International providers like BTT reduced their cov
 <br />
 After viewing the different International providers for Lebanon, we are going to see if the same providers covers other countries and what are their pourcentage of covrage.<br />
 Lets compare the International providers of Lebanon and the arab emirates:<br />
+
 | International Transit Providers in Lebanon | International Transit Providers in AE |
 | ------------- | ------------- |
-| ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/LB/LB.png)  | ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/AE/AE.png) |
+| ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/LB/LB.png) | ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/AE/AE.png) |
 
-jifheoif
-
+jidhid
 
 
 
