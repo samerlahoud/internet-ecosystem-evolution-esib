@@ -29,13 +29,13 @@ As we can see, the providers and their coverage changes every year. However some
 On the other hand some of the International providers like BTT reduced their coverage in lebanon.While they covered more than 30% of lebanon in 2008, this pourcentage  dropped to 15%  in 2009.The attractive deals with other providers might explain this drop .After 2013 BTN, which was a very important provider for Lebanon, became part of the providers with less than 4% of coverage .However years go by and new International providers aren't connecting lebanon to their networks.<br />
 <br />
 After viewing the different International providers for Lebanon, we are going to see if the same providers covers other countries and what are their pourcentage of covrage.<br />
-Lets compare the International providers of Lebanon and the arab emirates:<br />
+Let's compare the International providers of Lebanon and the arab emirates:<br />
 
 | International Transit Providers in Lebanon | International Transit Providers in AE |
 | ------------- | ------------- |
 | ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/LB/LB.png) | ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/AE/AE.png) |
 
-jidhid
+
 
 
 
