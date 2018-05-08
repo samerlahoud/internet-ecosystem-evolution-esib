@@ -39,3 +39,25 @@ def get_country_neighbours(country_code, country_asns):
                     clients[neighbour_asn] = clients[neighbour_asn] + neighbour_power
     return (providers, clients)
 
+
+def get_local_or_international_AS(AS,country_asns):
+    AS_neighbours={}
+    Liste_local=[]
+    Liste_international=[]
+    Liste=[]
+    local_neighbours=[]
+    international_neighbours=[]
+    api_url = '{}asn-neighbours/data.json?resource={}&lod=1'.format(api_url_base,AS)
+    asn_neighbours_json = requests.get(api_url).json()
+    for neighbour in asn_neighbours_json['data']['neighbours']:
+        neighbour_asn = str(neighbour['asn'])
+        neighbour_power = int(neighbour['power'])
+        if (neighbour['type']=='left' and neighbour_asn not in country_asns):
+            international_neighbours.append(neighbour_asn)
+            Liste_international.append(neighbour_power)
+        if (neighbour_asn in country_asns):
+            local_neighbours.append(neighbour_asn)
+            Liste_local.append(neighbour_power)
+    Liste = Liste_international + Liste_local
+    AS_neighbours[AS]=Liste
+
