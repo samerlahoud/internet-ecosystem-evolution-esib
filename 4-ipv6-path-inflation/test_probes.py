@@ -102,9 +102,9 @@ source_IQ = AtlasSource(
 
 
 measurement_v6=[]
-measurement_v6.append(traceroute1)
-measurement_v6.append(traceroute2)
-measurement_v6.append(traceroute3)
+#measurement_v6.append(traceroute1)
+#measurement_v6.append(traceroute2)
+#measurement_v6.append(traceroute3)
 measurement_v6.append(traceroute4)
 measurement_v6.append(traceroute5)
 measurement_v6.append(traceroute6)
@@ -112,9 +112,9 @@ measurement_v6.append(traceroute7)
 measurement_v6.append(traceroute8)
 
 measurement_v4=[]
-measurement_v4.append(traceroute9)
-measurement_v4.append(traceroute10)
-measurement_v4.append(traceroute11)
+#measurement_v4.append(traceroute9)
+#measurement_v4.append(traceroute10)
+#measurement_v4.append(traceroute11)
 measurement_v4.append(traceroute12)
 measurement_v4.append(traceroute13)
 measurement_v4.append(traceroute14)
@@ -127,15 +127,15 @@ probes.append(source_LB_2)
 #probes.append(source_LB_3)
 probes.append(source_IR_1)
 #probes.append(source_IR_2)
-probes.append(source_IR_3)
+#probes.append(source_IR_3)
 probes.append(source_TR_1)
-probes.append(source_TR_2)
-probes.append(source_TR_3)
+#probes.append(source_TR_2)
+#probes.append(source_TR_3)
 probes.append(source_OM)
 probes.append(source_QA)
 #probes.append(source_IQ)
 #print (sources)
-file = open("C:/Users/Florian Mouchantaf/Desktop/ipv6.txt",'w')
+file = open("C:/Users/Florian Mouchantaf/Desktop/ipv6_1.txt",'w')
 for j in measurement_v6:
     for i in probes:
         atlas_request = AtlasCreateRequest(
@@ -144,7 +144,7 @@ for j in measurement_v6:
             measurements=[j],
             sources=[i],
             is_oneoff=False,
-            start_time=1525366800,
+            start_time=1525789800,
             stop_time=1527865200
         )
         (is_success, response) = atlas_request.create()
@@ -155,7 +155,7 @@ for j in measurement_v6:
 file.close()
 time.sleep(200)
 
-file = open("C:/Users/Florian Mouchantaf/Desktop/ipv4.txt",'w')
+file = open("C:/Users/Florian Mouchantaf/Desktop/ipv4_1.txt",'w')
 for j in measurement_v4:
     for i in probes:
         atlas_request = AtlasCreateRequest(
@@ -164,7 +164,7 @@ for j in measurement_v4:
             measurements=[j],
             sources=[i],
             is_oneoff=False,
-            start_time=1525366800,
+            start_time=1525789800,
             stop_time=1527865200
         )
         (is_success, response) = atlas_request.create()

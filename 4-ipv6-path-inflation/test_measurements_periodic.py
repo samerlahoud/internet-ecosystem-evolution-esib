@@ -10,12 +10,26 @@ f = open("C:/Users/Florian Mouchantaf/Desktop/ipv6.txt",'r')
 
 for line in f:
     vector_ID_v6.append(int(line.strip()))
-    
+f.close()
+
+f = open("C:/Users/Florian Mouchantaf/Desktop/ipv6_1.txt",'r')
+
+for line in f:
+    vector_ID_v6.append(int(line.strip()))
+f.close()
+
 vector_ID_v4= []
 f = open("C:/Users/Florian Mouchantaf/Desktop/ipv4.txt",'r')
 
 for line in f:
     vector_ID_v4.append(int(line.strip()))
+f.close()
+
+f = open("C:/Users/Florian Mouchantaf/Desktop/ipv4_1.txt",'r')
+
+for line in f:
+    vector_ID_v4.append(int(line.strip()))
+f.close()
 
 result_v6=[]
 result_v4=[]
@@ -68,24 +82,30 @@ for i,j in zip(vector_ID_v6,vector_ID_v4):
 diff_hopes=[]
 diff_rtt=[]
 
+#print(len(total_hop_v6))
+#print(len(total_hop_v4))
+      
 for i in range(len(total_hop_v6)):
       diff_hopes.append(total_hop_v6[i]-total_hop_v4[i] )
 
 for i in range(len(rtt_v6)):
       diff_rtt.append(rtt_v6[i]-rtt_v4[i])
-
       
+#mesures reussis:
+      
+#print(len(diff_hopes))
+#print (len(diff_rtt))
 date= datetime.now
 filename=date().strftime('%d%m%Y%H%M%S')+".png"
 
 
-bin1=[-20,-10,-5,0,5,10,15,20]
+bin1=[-20,-10,-5,-3,0,3,5,10,20]
 #bin1=numpy.linspace(-15,15,31)
-#plt.hist(diff_hopes,bin1)
+plt.hist(diff_hopes,bin1)
 plt.xlabel("difference in number of hopes between v4&v6")
 plt.ylabel("frequency")
 plt.grid(True)
-#plt.show()
+plt.show()
 #plt.savefig("E:\semestre 4\ecosysteme et evolution de l'Internet\plots\Hop\{}".format(filename))
 
 bin2=[-200,-50,-40,-30,-20,-10,-5,0,5,10,20,30,40,50,200]
@@ -94,9 +114,9 @@ plt.hist(diff_rtt,bin2)
 plt.xlabel("difference in value of RTT between v4&v6")
 plt.ylabel("frequency")
 plt.grid(True)
-#plt.show()
+plt.show()
 #print(filename)
-plt.savefig("E:\semestre 4\ecosysteme et evolution de l'Internet\plots\RTT\{}".format(filename))
+#plt.savefig("E:\semestre 4\ecosysteme et evolution de l'Internet\plots\RTT\{}".format(filename))
 
 
 
