@@ -101,11 +101,11 @@ filename=date().strftime('%d%m%Y%H%M%S')+".png"
 
 bin1=[-20,-10,-5,-3,0,3,5,10,20]
 #bin1=numpy.linspace(-15,15,31)
-plt.hist(diff_hopes,bin1)
+#plt.hist(diff_hopes,bin1)
 plt.xlabel("difference in number of hopes between v4&v6")
 plt.ylabel("frequency")
 plt.grid(True)
-plt.show()
+#plt.show()
 #plt.savefig("E:\semestre 4\ecosysteme et evolution de l'Internet\plots\Hop\{}".format(filename))
 
 bin2=[-200,-50,-40,-30,-20,-10,-5,0,5,10,20,30,40,50,200]
@@ -114,9 +114,9 @@ plt.hist(diff_rtt,bin2)
 plt.xlabel("difference in value of RTT between v4&v6")
 plt.ylabel("frequency")
 plt.grid(True)
-plt.show()
+#plt.show()
 #print(filename)
-#plt.savefig("E:\semestre 4\ecosysteme et evolution de l'Internet\plots\RTT\{}".format(filename))
+plt.savefig("E:\semestre 4\ecosysteme et evolution de l'Internet\plots\RTT\{}".format(filename))
 
 
 
