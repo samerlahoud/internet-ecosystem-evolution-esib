@@ -5,6 +5,8 @@ import numpy
 import matplotlib.pyplot as plt
 from datetime import datetime
 from statistics import mean
+import matplotlib.ticker as mticker
+
 vector_ID_v6 = []
 f = open("C:/Users/Florian Mouchantaf/Desktop/ipv6.txt",'r')
 
@@ -99,21 +101,26 @@ date= datetime.now
 filename=date().strftime('%d%m%Y%H%M%S')+".png"
 
 
-bin1=[-20,-10,-5,-3,0,3,5,10,20]
-#bin1=numpy.linspace(-15,15,31)
-#plt.hist(diff_hopes,bin1)
+#(bin1=[-20,-10,-5,-3,0,3,5,10,20])
+bin1=numpy.linspace(-15,15,31)
+#plt.hist(diff_hopes,bin1, edgecolor='black', linewidth=1.3)
 plt.xlabel("difference in number of hopes between v4&v6")
-plt.ylabel("frequency")
+plt.ylabel("percentage")
 plt.grid(True)
+formatter = mticker.PercentFormatter(xmax=45)
+plt.gca().yaxis.set_major_formatter(formatter)
 #plt.show()
 #plt.savefig("E:\semestre 4\ecosysteme et evolution de l'Internet\plots\Hop\{}".format(filename))
 
 bin2=[-200,-50,-40,-30,-20,-10,-5,0,5,10,20,30,40,50,200]
 #bin2=numpy.linspace(-50,50,11)
-plt.hist(diff_rtt,bin2)
+plt.hist(diff_rtt,bin2,edgecolor='black', rwidth=0.8, linewidth=1.1)
 plt.xlabel("difference in value of RTT between v4&v6")
 plt.ylabel("frequency")
+#plt.xscale('log')
 plt.grid(True)
+formatter = mticker.PercentFormatter(xmax=45)
+plt.gca().yaxis.set_major_formatter(formatter)
 #plt.show()
 #print(filename)
 plt.savefig("E:\semestre 4\ecosysteme et evolution de l'Internet\plots\RTT\{}".format(filename))
