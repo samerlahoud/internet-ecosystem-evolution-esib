@@ -1,0 +1,17 @@
+Google.is
+Visir.is
+Mbl.is
+Ruv.is
+Landsbankinn.is
+Sambio.is
+Arionbanki.is
+Isb.is
+Vedur.is
+Islandsbanki.is
+Bland.is
+Inna.is
+Pressan.is
+Bilasolur.is
+Island.is
+Stundin.is
+Ikea.is

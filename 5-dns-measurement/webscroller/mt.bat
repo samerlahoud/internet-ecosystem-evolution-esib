@@ -1,0 +1,12 @@
+Google.com.mt
+Tvm.com.mt
+Independent.com.mt
+Maltatoday.com.mt
+Netnews.com.mt
+netmedia.com.mt
+Newsbook.com.mt
+Yellow.com.mt
+Gov.mt
+Um.edu.mt
+Hsbc.com.mt
+One.com.mt
