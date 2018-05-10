@@ -1,0 +1,14 @@
+Google.at
+Orf.at
+Willhaben.at
+Gmx.at
+Derstandard.at
+Krone.at
+Raiffeisen.at
+Sparkasse.at
+Shop-apotheke.at
+Bankaustria.at
+Univie.ac.at
+Ebay.at
+Geizhals.at
+Oebb.at

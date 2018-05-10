@@ -1,0 +1,13 @@
+Google.fi
+Yle.fi
+Iltalehti.fi
+Tori.fi
+Nordea.fi
+Mtv.fi
+Suomi.fi
+Kela.fi
+Veikkaus.fi
+Elisa.fi
+Foreca.fi
+Ilmatieteenlaitos.fi
+Oikotie.fi
