@@ -1,0 +1,12 @@
+Google.ie
+Independent.ie
+Donedeal.ie
+Rte.ie
+Aib.ie
+Boards.ie
+Ebay.ie
+Daft.ie
+Adverts.ie
+Thejournal.ie
+Ucd.ie
+Eir.ie

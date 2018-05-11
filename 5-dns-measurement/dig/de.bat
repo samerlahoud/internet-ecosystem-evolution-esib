@@ -1,0 +1,17 @@
+Google.de
+Amazon.de
+Ebay.de
+Ebay-kleinanzeigen.de
+Web.de
+T-online.de
+Spiegel.de
+Bild.de
+Chip.de
+Focus.de
+Postbank.de
+Otto.de
+Welt.de
+Mobile.de
+Dhl.de
+Bahn.de
+Idealo.de

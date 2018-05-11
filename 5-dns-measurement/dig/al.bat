@@ -1,0 +1,16 @@
+Joq.al
+Panorama.com.al
+Xing.al
+www.xing.al
+Google.al
+Merrjep.al
+Anabel.al
+Opinion.al
+Revistaclass.al
+360grade.al
+Alpenews.al
+Tej.al
+Living.al
+Noa.al
+Shije.al
+Tring.al

@@ -1,0 +1,16 @@
+Google.com.ua
+Olx.ua
+Telegraf.com.ua
+Sinoptik.ua
+Prom.ua
+Rozetka.com.ua
+Privatbank.ua
+Gismeteo.ua
+Yandex.ua
+Favorit.com.ua
+Rst.ua
+Work.ua
+Segodnya.ua
+Novaposhta.ua
+Hotline.ua
+Censor.net.ua

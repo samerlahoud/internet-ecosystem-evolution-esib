@@ -1,0 +1,14 @@
+Google.ro
+Olx.ro
+Emag.ro
+Filelist.ro
+Adevarul.ro
+Gsp.ro
+Flashscore.ro
+Stirileprotv.ro
+Digisport.ro
+Cinemagia.ro
+Hotnews.ro
+Homebank.ro
+Autovit.ro
+Libertatea.ro
