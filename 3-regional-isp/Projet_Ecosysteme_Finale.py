@@ -10,6 +10,7 @@ import datetime
 import plotly.figure_factory as ff
 import plotly.offline as offline
 import os.path
+from progress.bar import Bar
 
 
 
@@ -21,7 +22,7 @@ def get_country_asn(country_code):
     api_url = '{}country-asns/data.json?resource={}&lod=1'.format(api_url_base, country_code)
 
     response = requests.get(api_url)
-
+    
     if response.status_code == 200:
         country_asns_json = json.loads(response.content.decode('utf-8'))
         country_asns = country_asns_json["data"]["countries"][0]["routed"]
@@ -33,18 +34,63 @@ def get_country_neighbours(country_code, country_asns):
     country_neighbours={}
     for asn in country_asns:
         #print("studying: ", asn)
+        api_url = '{}asn-neighbours/data.json?resource={}'.format(api_url_base, asn)
+        asn_neighbours_json1 = requests.get(api_url)
+        if (asn_neighbours_json1.status_code == 200):
+            asn_neighbours_json = json.loads(asn_neighbours_json1.content.decode('utf-8'))
+            for neighbour in asn_neighbours_json['data']['neighbours']:
+                neighbour_asn = str(neighbour['asn'])
+                neighbour_power = int(neighbour['power'])
+                if (neighbour['type']=='left' and neighbour_asn not in country_asns):
+                    if (neighbour_asn not in country_neighbours):
+                        country_neighbours[neighbour_asn] = neighbour_power
+                    else:
+                        country_neighbours[neighbour_asn] = country_neighbours[neighbour_asn] + neighbour_power
+    print(country_neighbours)
+    return country_neighbours
+
+def get_country_neighbours_Level3(country_code, country_asns):
+    country_neighbours_division={}
+    Liste_AS_libanais=[]
+    Liste_AS_libanais_power=[]
+    for asn in country_asns:
+        print("studying: ", asn)
         api_url = '{}asn-neighbours/data.json?resource={}&lod=1'.format(api_url_base, asn)
         asn_neighbours_json = requests.get(api_url).json()
         for neighbour in asn_neighbours_json['data']['neighbours']:
             neighbour_asn = str(neighbour['asn'])
             neighbour_power = int(neighbour['power'])
-            if (neighbour['type']=='left' and neighbour_asn not in country_asns):
-                if (neighbour_asn not in country_neighbours):
-                    country_neighbours[neighbour_asn] = neighbour_power
-                else:
-                    country_neighbours[neighbour_asn] = country_neighbours[neighbour_asn] + neighbour_power
-    return country_neighbours
+            if (neighbour_asn=='3356'):
+                Liste_AS_libanais.append(asn)
+                Liste_AS_libanais_power.append(neighbour_power)
+                country_neighbours_division[neighbour_asn]=Liste_AS_libanais
+    print("Power: "+str(Liste_AS_libanais_power))         
+    print(country_neighbours_division)
+    DESSINER_DIAGRAMME_Level3(Liste_AS_libanais,Liste_AS_libanais_power,'3356')
 
+def get_country_neighbours_Level3_2(country_code, country_asns):
+    country_neighbours_division={}
+    Liste_AS_libanais=[]
+    Liste_AS_libanais_power=[]
+    for asn in country_asns:
+        print("studying: ", asn)
+        api_url = '{}asn-neighbours/data.json?resource={}&lod=1'.format(api_url_base, asn)
+        asn_neighbours_json = requests.get(api_url).json()
+        for neighbour in asn_neighbours_json['data']['neighbours']:
+            neighbour_asn = str(neighbour['asn'])
+            neighbour_power = int(neighbour['power'])
+            if (neighbour_asn not in country_asns ):
+                Liste_AS_libanais.append(asn)
+                Liste_AS_libanais_power.append(neighbour_power)
+                country_neighbours_division[neighbour_asn]=Liste_AS_libanais
+                Liste_AS_libanais.clear()
+                Liste_AS_libanais_power.clear()
+    print("Power: "+str(Liste_AS_libanais_power))         
+    print(country_neighbours_division)
+    DESSINER_DIAGRAMME_Level3(Liste_AS_libanais,Liste_AS_libanais_power,'3356')
+
+   
+'''
 def get_ISP_LB(country_asns):
     Liste={}
     #https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS9051
@@ -55,7 +101,7 @@ def get_ISP_LB(country_asns):
             for neighbour in asn_neighbours_json['data']['neighbours']:
                 neighbour_asn = str(neighbour['asn'])
                 if (neighbour['type']=='left' and neighbour_asn not in country_asns):
-                    Liste[asn]=neighbour_asn
+                    Liste[asn]=neighbour_asn 
     print(Liste)
     Transforme_Dic_Liste(Liste)
     
@@ -68,8 +114,8 @@ def Transforme_Dic_Liste(dic):
         Value.append(j)
     x=get_country_neighbours('LB', Cle)
     print(x)
-    
-
+    '''
+'''
 def get_neighbours_AS(AS,country_asns):
     AS_neighbours={}
     Liste=[]
@@ -84,6 +130,8 @@ def get_neighbours_AS(AS,country_asns):
             Liste.append(neighbour_power)
     AS_neighbours[AS]=Liste
     DESSINER_DIAGRAMME(Neighbours,Liste,AS)
+
+'''
 
 def indexall(lst, value):
 	return [i for i, v in enumerate(lst) if v == value]
@@ -103,24 +151,23 @@ def Remplir_liste_Pays(Dic,Country):
     Labels_Delete=[]
     Value_Delete=[]
     for clee in Value:
-        if(((clee*100)/power_total) < 4):           #on ajoute tous les AS avec un pourcentage moins que 4% dans la categorie Others
+        if(((clee*100)/power_total) < 2):           #on ajoute tous les AS avec un pourcentage moins que 4% dans la categorie Others
             others=others+clee
             ind=indexall(Value,clee)
             print(ind)
             for h in ind:
                 Labels_Delete.append(Labels[h])
                 Value_Delete.append(Value[h])
-    print(list(set(Labels_Delete)))
-    print(list(set(Value_Delete)))
-
-       
+    
     Value.append(others)
     Value=[n for n in Value if n not in Value_Delete]
     Labels=[n for n in Labels if n not in Labels_Delete]
     print()
     print("--------------")
     print(Labels)
+    print("taille de Labels "+str(len(Labels)))
     print(Value)
+    print("taille de Value "+str(len(Value)))
     
     
     DESSINER_DIAGRAMME(Labels,Value,Country)
@@ -138,20 +185,20 @@ def Remplir_liste_Pays2(Dic,Country,year):
     Labels_Delete=[]
     Value_Delete=[]
     for clee in Value:
-        if(((clee*100)/power_total) < 4):   #on ajoute tous les AS avec un pourcentage moins que 4% dans la categorie Others
+        if(((clee*100)/power_total) < 2):   #on ajoute tous les AS avec un pourcentage moins que 4% dans la categorie Others
             others=others+clee
             ind=indexall(Value,clee)
             for h in ind:
                 Labels_Delete.append(Labels[h])
                 Value_Delete.append(Value[h])
-    print(list(set(Labels_Delete)))
-    print(list(set(Value_Delete)))
-
-        
+    
     Value.append(others)
     Value=[n for n in Value if n not in Value_Delete]
     Labels=[n for n in Labels if n not in Labels_Delete]
-
+    print(Labels)
+    print("taille de Labels "+str(len(Labels)))
+    print(Value)
+    print("taille de Value "+str(len(Value)))
     DESSINER_DIAGRAMME_Pays2(Labels,Value,Country,year)
 
 
@@ -160,15 +207,17 @@ def ASN_History2(country_code, country_asns,year):
     country_neighbours={}
     for asn in country_asns:
         api_url = '{}asn-neighbours/data.json?resource={}&starttime={}-10-01T12:00:00'.format(api_url_base,asn,year)
-        asn_neighbours_json = requests.get(api_url).json()
-        for neighbour in asn_neighbours_json['data']['neighbours']:
-            neighbour_asn = str(neighbour['asn'])
-            neighbour_power = int(neighbour['power'])
-            if (neighbour['type']=='left' and neighbour_asn not in country_asns):
-                if (neighbour_asn not in country_neighbours):
-                    country_neighbours[neighbour_asn] = neighbour_power
-                else:
-                    country_neighbours[neighbour_asn] = country_neighbours[neighbour_asn] + neighbour_power
+        asn_neighbours_json1 = requests.get(api_url)
+        if (asn_neighbours_json1.status_code == 200):
+            asn_neighbours_json = json.loads(asn_neighbours_json1.content.decode('utf-8'))
+            for neighbour in asn_neighbours_json['data']['neighbours']:
+                neighbour_asn = str(neighbour['asn'])
+                neighbour_power = int(neighbour['power'])
+                if (neighbour['type']=='left' and neighbour_asn not in country_asns):
+                    if (neighbour_asn not in country_neighbours):
+                        country_neighbours[neighbour_asn] = neighbour_power
+                    else:
+                        country_neighbours[neighbour_asn] = country_neighbours[neighbour_asn] + neighbour_power
     print("In "+str(year)+" "+str(country_neighbours))
     return country_neighbours
     
@@ -187,7 +236,27 @@ def DESSINER_DIAGRAMME(liste,f,ASN):
     if(liste!=[]):
         plt.title("International Transit Providers of "+ASN+" :")
         x=GET_NAME(liste)
-        x.append('Others')
+        x.append("Others")
+        labels=x
+        sizes=f
+        plt.axis('equal')
+        plt.pie(sizes,labels=labels,autopct='%0.1f%%')
+        plt.savefig('C:/Users/abraham/Documents/GitHub/internet-ecosystem-evolution-esib/3-regional-isp/Graphs/'+ASN+'.png',bbox_inches='tight')
+        plt.legend()
+        plt.show()
+        
+        
+    else:
+        print("Ce AS ne possede pas de International Transit Providers")
+        print()
+
+def DESSINER_DIAGRAMME_Level3(liste,f,ASN):
+    labels=[]
+    sizes=[]
+    x=[]
+    if(liste!=[]):
+        plt.title(ASN+"'s Lebanese clients are :")
+        x=GET_NAME(liste)
         labels=x
         sizes=f
         plt.axis('equal')
@@ -209,7 +278,7 @@ def DESSINER_DIAGRAMME_Pays2(liste,f,Country,year):
     if(liste!=[]):
         plt.title("International Transit Providers of "+Country+" in " +str(year)+"  are:")
         x=GET_NAME(liste)
-        x.append('Others')
+        x.append("Others")
         labels=x
         sizes=f
         plt.axis('equal')
@@ -219,33 +288,35 @@ def DESSINER_DIAGRAMME_Pays2(liste,f,Country,year):
         plt.show()
 
 def GET_NAME(liste):
-    api ='https://stat.ripe.net/data/whois/data.json?'
     Names=[]
     for i in liste:  
-        url=api+ urllib.parse.urlencode({'resource':i})
-        json_data_AS_NAME = requests.get(url).json()
-        if(i=='6453'):
+        url='https://stat.ripe.net/data/whois/data.json?resource={}'.format(i)
+        json_data_AS_NAME1 = requests.get(url)
+        if (json_data_AS_NAME1.status_code == 200):
+            json_data_AS_NAME = json.loads(json_data_AS_NAME1.content.decode('utf-8'))
+            if(i=='6453'):
+                Names.append('TATA COMMUNICATIONS')
+            else:
+                for t in json_data_AS_NAME['data']['records']:
+                    for j in t:
+                        if(j['key']=='as-name' or j['key']=='ASName'):
+                            Names.append(j['value'])
+    return Names
+
+
+def GET_NAME_One_AS(AS):
+    url='https://stat.ripe.net/data/whois/data.json?resource={}'.format(AS)
+    Names=[] 
+    json_data_AS_NAME1 = requests.get(url)
+    if (json_data_AS_NAME1.status_code == 200):
+        json_data_AS_NAME = json.loads(json_data_AS_NAME1.content.decode('utf-8'))
+        if(AS =='6453'):
             Names.append('TATA COMMUNICATIONS')
         else:
             for t in json_data_AS_NAME['data']['records']:
                 for j in t:
                     if(j['key']=='as-name' or j['key']=='ASName'):
                         Names.append(j['value'])
-    return Names
-
-
-def GET_NAME_One_AS(AS):
-    api ='https://stat.ripe.net/data/whois/data.json?'
-    Names=[] 
-    url=api+ urllib.parse.urlencode({'resource':AS})
-    json_data_AS_NAME = requests.get(url).json()
-    if(AS =='6453'):
-        Names.append('TATA COMMUNICATIONS')
-    else:
-        for t in json_data_AS_NAME['data']['records']:
-            for j in t:
-                if(j['key']=='as-name' or j['key']=='ASName'):
-                    Names.append(j['value'])
     return Names
 
 
@@ -258,6 +329,7 @@ def start():
             country_asns = get_country_asn(country_code)
             country_neighbours = get_country_neighbours(country_code, country_asns)
             #get_ISP_LB(country_asns)
+            #get_country_neighbours_Level3_2(country_code,country_asns)
             print()
             print()
             print("hehe"+str(country_neighbours))
