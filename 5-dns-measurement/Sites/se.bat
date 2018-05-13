@@ -1,0 +1,15 @@
+Google.se
+Aftonbladet.se
+Blocket.se
+Expressen.se
+Vklass.se
+Svt.se
+Swedbank.se
+Hitta.se
+Svtplay.se
+Skatteverket.se
+Funktionstjanster.se
+Hemnet.se
+Avanza.se
+Synonymer.se
+Existenz.se

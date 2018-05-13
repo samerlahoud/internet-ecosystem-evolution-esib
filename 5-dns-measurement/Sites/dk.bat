@@ -1,0 +1,14 @@
+Google.dk
+Ekstrabladet.dk
+Lectio.dk
+Dba.dk
+Emu.dk
+Viaplay.dk
+Dmi.dk
+Nemlog-in.dk
+E-boks.dk
+Politiken.dk
+Ordnet.dk
+Dtu.dk
+Pricerunner.dk
+Wayf.dk

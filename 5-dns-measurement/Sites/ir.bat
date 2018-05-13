@@ -1,0 +1,13 @@
+Shaparak.ir
+Divar.ir
+Bankmellat.ir
+Yjc.ir
+Isna.ir
+Bmi.ir
+Tamin.ir
+Tabnak.ir
+Irib.ir
+Blog.ir
+Bama.ir
+Zoomit.ir
+Khabaronline.ir
