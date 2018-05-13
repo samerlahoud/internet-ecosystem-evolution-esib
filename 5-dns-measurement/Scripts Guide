@@ -1,0 +1,13 @@
+All scripts were developed under python3 ubuntu 17
+
+MAKE SURE ALL IMPORTED LIBRARIES ARE DOWNLOADED
+
+whois.py : python3 whois.py -> Get the IPs of all authoritative DNS Servers in Country Codes (Output : ccTLD)
+
+myscroller.py : python3 myscroller.py -> Script will get local websites in top 50 for countries in nodotcodes except uk (uk is gb on alexa) for each country batch file will be created in Sites folder
+
+mydig.py : python3 mydig.py -> time dig @server -f batch will be executed for all ccTLDs storing results in Results forlder
+
+dmeasure.py : python3 dmeasure.py <CountryCode> -> The results of specified measures will be plotted using boxplot
+
+For any question, contact info : rabih.bikai@net.usj.edu.lb
