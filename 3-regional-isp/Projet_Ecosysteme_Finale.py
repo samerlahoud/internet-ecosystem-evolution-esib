@@ -49,15 +49,35 @@ def get_country_neighbours(country_code, country_asns):
     print(country_neighbours)
     return country_neighbours
 
+def get_country_neighbours_Satelite(country_code, country_asns):
+    country_neighbours={}
+    for asn in country_asns:
+        if(asn!='42020'):
+            #print("studying: ", asn)
+            api_url = '{}asn-neighbours/data.json?resource={}'.format(api_url_base, asn)
+            asn_neighbours_json1 = requests.get(api_url)
+            if (asn_neighbours_json1.status_code == 200):
+                asn_neighbours_json = json.loads(asn_neighbours_json1.content.decode('utf-8'))
+                for neighbour in asn_neighbours_json['data']['neighbours']:
+                    neighbour_asn = str(neighbour['asn'])
+                    neighbour_power = int(neighbour['power'])
+                    if (neighbour['type']=='left' and neighbour_asn not in country_asns):
+                        if (neighbour_asn not in country_neighbours):
+                            country_neighbours[neighbour_asn] = neighbour_power
+                        else:
+                            country_neighbours[neighbour_asn] = country_neighbours[neighbour_asn] + neighbour_power
+    #print("Les satelite providers du liban sont "+str(country_neighbours))
+    return country_neighbours
+
 def get_country_neighbours_Level3(country_code, country_asns):
     country_neighbours_division={}
     Liste_AS_libanais=[]
     Liste_AS_libanais_power=[]
     for asn in country_asns:
         print("studying: ", asn)
-        api_url = '{}asn-neighbours/data.json?resource={}&lod=1'.format(api_url_base, asn)
+        api_url = '{}asn-neighbours/data.json?resource={}'.format(api_url_base, asn)
         asn_neighbours_json = requests.get(api_url).json()
-        for neighbour in asn_neighbours_json['data']['neighbours']:
+        for neighbour in asn_neighbours_json['data']['neighbours']:                  #Pour  savoir a quel AS libanais Level 3 offre de l'internet 
             neighbour_asn = str(neighbour['asn'])
             neighbour_power = int(neighbour['power'])
             if (neighbour_asn=='3356'):
@@ -68,70 +88,8 @@ def get_country_neighbours_Level3(country_code, country_asns):
     print(country_neighbours_division)
     DESSINER_DIAGRAMME_Level3(Liste_AS_libanais,Liste_AS_libanais_power,'3356')
 
-def get_country_neighbours_Level3_2(country_code, country_asns):
-    country_neighbours_division={}
-    Liste_AS_libanais=[]
-    Liste_AS_libanais_power=[]
-    for asn in country_asns:
-        print("studying: ", asn)
-        api_url = '{}asn-neighbours/data.json?resource={}&lod=1'.format(api_url_base, asn)
-        asn_neighbours_json = requests.get(api_url).json()
-        for neighbour in asn_neighbours_json['data']['neighbours']:
-            neighbour_asn = str(neighbour['asn'])
-            neighbour_power = int(neighbour['power'])
-            if (neighbour_asn not in country_asns ):
-                Liste_AS_libanais.append(asn)
-                Liste_AS_libanais_power.append(neighbour_power)
-                country_neighbours_division[neighbour_asn]=Liste_AS_libanais
-                Liste_AS_libanais.clear()
-                Liste_AS_libanais_power.clear()
-    print("Power: "+str(Liste_AS_libanais_power))         
-    print(country_neighbours_division)
-    DESSINER_DIAGRAMME_Level3(Liste_AS_libanais,Liste_AS_libanais_power,'3356')
 
-   
-'''
-def get_ISP_LB(country_asns):
-    Liste={}
-    #https://stat.ripe.net/data/asn-neighbours/data.json?resource=AS9051
-    for asn in country_asns:
-        if(asn!="42020"):
-            api_url = '{}asn-neighbours/data.json?resource={}'.format(api_url_base, asn)
-            asn_neighbours_json = requests.get(api_url).json()
-            for neighbour in asn_neighbours_json['data']['neighbours']:
-                neighbour_asn = str(neighbour['asn'])
-                if (neighbour['type']=='left' and neighbour_asn not in country_asns):
-                    Liste[asn]=neighbour_asn 
-    print(Liste)
-    Transforme_Dic_Liste(Liste)
-    
-def Transforme_Dic_Liste(dic):
-    Cle=[]
-    Value=[]
-    for i in dic.keys():
-        Cle.append(i)
-    for j in dic.values():
-        Value.append(j)
-    x=get_country_neighbours('LB', Cle)
-    print(x)
-    '''
-'''
-def get_neighbours_AS(AS,country_asns):
-    AS_neighbours={}
-    Liste=[]
-    Neighbours=[]
-    api_url = '{}asn-neighbours/data.json?resource={}&lod=1'.format(api_url_base,AS)
-    asn_neighbours_json = requests.get(api_url).json()
-    for neighbour in asn_neighbours_json['data']['neighbours']:
-        neighbour_asn = str(neighbour['asn'])
-        neighbour_power = int(neighbour['power'])
-        if (neighbour['type']=='left' and neighbour_asn not in country_asns):
-            Neighbours.append(neighbour_asn)
-            Liste.append(neighbour_power)
-    AS_neighbours[AS]=Liste
-    DESSINER_DIAGRAMME(Neighbours,Liste,AS)
 
-'''
 
 def indexall(lst, value):
 	return [i for i, v in enumerate(lst) if v == value]
@@ -151,7 +109,7 @@ def Remplir_liste_Pays(Dic,Country):
     Labels_Delete=[]
     Value_Delete=[]
     for clee in Value:
-        if(((clee*100)/power_total) < 2):           #on ajoute tous les AS avec un pourcentage moins que 4% dans la categorie Others
+        if(((clee*100)/power_total) < 2.5):           #on ajoute tous les AS avec un pourcentage moins que 4% dans la categorie Others
             others=others+clee
             ind=indexall(Value,clee)
             print(ind)
@@ -168,9 +126,43 @@ def Remplir_liste_Pays(Dic,Country):
     print("taille de Labels "+str(len(Labels)))
     print(Value)
     print("taille de Value "+str(len(Value)))
-    
-    
     DESSINER_DIAGRAMME(Labels,Value,Country)
+
+def Remplir_liste_Satelite(Dic,Country):
+    Labels=[]
+    Value=[]
+    power_total=0
+    others=0
+    for cle in Dic.keys():
+        Labels.append(cle)
+    print(Labels)
+    for cle1 in Dic.values():
+        Value.append(cle1)
+        power_total=power_total+cle1
+    print(Value)
+    Labels_Delete=[]
+    Value_Delete=[]
+    for clee in Value:
+        if(((clee*100)/power_total) < 2.5):           #on ajoute tous les AS avec un pourcentage moins que 4% dans la categorie Others
+            others=others+clee
+            ind=indexall(Value,clee)
+            print(ind)
+            for h in ind:
+                Labels_Delete.append(Labels[h])
+                Value_Delete.append(Value[h])
+    
+    Value.append(others)
+    Value=[n for n in Value if n not in Value_Delete]
+    Labels=[n for n in Labels if n not in Labels_Delete]
+    print()
+    print("--------------")
+    print(Labels)
+    print("taille de Labels "+str(len(Labels)))
+    print(Value)
+    print("taille de Value "+str(len(Value)))
+    DESSINER_DIAGRAMME_Satelite(Labels,Value,Country)
+
+
 
 def Remplir_liste_Pays2(Dic,Country,year):
     Labels=[]
@@ -185,7 +177,7 @@ def Remplir_liste_Pays2(Dic,Country,year):
     Labels_Delete=[]
     Value_Delete=[]
     for clee in Value:
-        if(((clee*100)/power_total) < 2):   #on ajoute tous les AS avec un pourcentage moins que 4% dans la categorie Others
+        if(((clee*100)/power_total) < 2.5):   #on ajoute tous les AS avec un pourcentage moins que 4% dans la categorie Others
             others=others+clee
             ind=indexall(Value,clee)
             for h in ind:
@@ -237,11 +229,34 @@ def DESSINER_DIAGRAMME(liste,f,ASN):
         plt.title("International Transit Providers of "+ASN+" :")
         x=GET_NAME(liste)
         x.append("Others")
-        labels=x
+        print(x)
+        labels=list(x)
         sizes=f
         plt.axis('equal')
         plt.pie(sizes,labels=labels,autopct='%0.1f%%')
         plt.savefig('C:/Users/abraham/Documents/GitHub/internet-ecosystem-evolution-esib/3-regional-isp/Graphs/'+ASN+'.png',bbox_inches='tight')
+        plt.legend()
+        plt.show()
+        
+        
+    else:
+        print("Ce AS ne possede pas de International Transit Providers")
+        print()
+
+def DESSINER_DIAGRAMME_Satelite(liste,f,ASN):
+    labels=[]
+    sizes=[]
+    x=[]
+    if(liste!=[]):
+        plt.title("Internet Satelite Providers of "+ASN+" :")
+        x=GET_NAME(liste)
+        x.append("Others")
+        print(x)
+        labels=list(x)
+        sizes=f
+        plt.axis('equal')
+        plt.pie(sizes,labels=labels,autopct='%0.1f%%')
+        plt.savefig('C:/Users/abraham/Documents/GitHub/internet-ecosystem-evolution-esib/3-regional-isp/Graphs/'+ASN+'_Satelite.png',bbox_inches='tight')
         plt.legend()
         plt.show()
         
@@ -328,11 +343,10 @@ def start():
         else:
             country_asns = get_country_asn(country_code)
             country_neighbours = get_country_neighbours(country_code, country_asns)
-            #get_ISP_LB(country_asns)
-            #get_country_neighbours_Level3_2(country_code,country_asns)
+            Satelite=get_country_neighbours_Satelite(country_code, country_asns)
+            Remplir_liste_Satelite(Satelite,country_code)
             print()
             print()
-            print("hehe"+str(country_neighbours))
             Remplir_liste_Pays(country_neighbours,country_code)
             print("c'est Fini")
             Continuer = input("Do you want to see the International Providers of another country: ")
