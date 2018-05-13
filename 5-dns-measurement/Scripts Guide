@@ -2,6 +2,8 @@ All scripts were developed under python3 ubuntu 17
 
 MAKE SURE ALL IMPORTED LIBRARIES ARE DOWNLOADED
 
+Each script is also available in named folder if desired seperatly
+
 whois.py : python3 whois.py -> Get the IPs of all authoritative DNS Servers in Country Codes (Output : ccTLD)
 
 myscroller.py : python3 myscroller.py -> Script will get local websites in top 50 for countries in nodotcodes except uk (uk is gb on alexa) for each country batch file will be created in Sites folder
