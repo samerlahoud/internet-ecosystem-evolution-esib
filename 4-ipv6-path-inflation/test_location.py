@@ -1,3 +1,4 @@
+#j=requests.get('http://ip-api.com/json/130.206.216.2')
 from ripe.atlas.sagan import Result
 import requests
 import json
@@ -15,16 +16,15 @@ x=asndb.lookup('8.8.8.8')
 #https://api.iptoasn.com/v1/as/ip/<ip address>
 
 #AS-path de la source LB2(IDM):
-aspath=[]
-path=[]
+
 idv6=[12459070,12459079,12459088,12599687,12599693,12599699,12599711]
 idv4=[12459144,12459154,12459163,12599748,12599755,12599761,12599793]
 #AS-PATH de IR:
 #idv6=[12459071,12459080,12459089,12599688,12599694,12599700,12599712]
 #idv4=[12459145,12459155,12459164,12599749,12599756,12599762,12599794]
-result= requests.get('https://atlas.ripe.net/api/v2/measurements/{}/results/?&format=json'.format(idv6[1]))
+result= requests.get('https://atlas.ripe.net/api/v2/measurements/{}/results/?&format=json'.format(idv6[3]))
 response=json.loads(result.content.decode('utf-8'))
-my_result = Result.get(response[0])
+my_result = Result.get(response[5])
 hop= my_result.hops
 ip=[]
 for k in hop:
@@ -34,21 +34,13 @@ for k in hop:
             ip.append(j.origin)
     #print(ip)
 
-AS=[]
-country=[]
+path=[]
 for k in ip:
-    j=requests.get("https://api.iptoasn.com/v1/as/ip/{}".format(k))
+    j=requests.get("http://ip-api.com/json/{}".format(k))
     if j.status_code == 200:
         r=json.loads(j.content.decode('utf-8'))
-        print(r)
-        if r['announced']:
-            l=r['as_number']
-            if l not in AS:
-                AS.append(l)
-                country.append(r['as_country_code'])
+        if r['status']=='success':
+            path.append(r['country'])
         else:
-            AS.append(0)
-            country.append(0)
-print(AS)
-print(country)
-    
+            path.append(0)
+print(path)

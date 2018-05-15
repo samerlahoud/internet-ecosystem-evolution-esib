@@ -1,0 +1,15 @@
+Google.ee
+Postimees.ee
+Delfi.ee
+Swedbank.ee
+Okidoki.ee
+Seti.ee
+Seb.ee
+Telia.ee
+Err.ee
+Neti.ee
+Ohtuleht.ee
+Eki.ee
+Tallinn.ee
+Online.ee
+Euronics.ee
