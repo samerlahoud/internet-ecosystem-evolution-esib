@@ -36,9 +36,13 @@ Let's compare the International providers of Lebanon with those of the arab emir
 | ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/LB/LB.png) | ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/AE/AE.png) |
 
 The two pie charts illustrate the propotion of International providers in Lebanon and Arab Emirate in 2018.<br />
-Level 3 provide 63% of Internet in Lebanon and only 10.1% in AE.The maximum propotion of providers that provide Internet in the AE is 15.4%(GTT-Backbone).So we can say that there is equal distribution of providers in AE and a dominance distribution in Lebanon.
+Level 3 provide 63% of Internet in Lebanon and only 10.1% in AE.The maximum propotion of providers that provide Internet in the AE is 15.4%(GTT-Backbone).So we can say that there is equal distribution of providers in AE and a dominance distribution in Lebanon.<br />
 
-
+Let's focus now on the Satellite providers of Lebanon,we can notice that the Level 3 isn't the dominant provider anymore.This could mean that Level 3 provides Lebanon via fiber optics at most. We can also see that StormSystem is the major Satellite provider of Lebanon. We notice also that all the providers who are part of the Category "Others" are Satellite providers.
+ ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/LB/LB_Satelite.png) <br />
+ This result is the evidence that there is redundant connectivity in Lebanon,if the connection via Fiber Optics went down there is always a backup Satellite provider who can connect us to the world.
+ 
+ 
 
 
 
