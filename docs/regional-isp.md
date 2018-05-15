@@ -35,8 +35,8 @@ Let's compare the International providers of Lebanon with those of the arab emir
 | ------------- | ------------- |
 | ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/LB/LB.png) | ![plot LB](https://raw.githubusercontent.com/samerlahoud/internet-ecosystem-evolution-esib/master/3-regional-isp/Graphs/AE/AE.png) |
 
-The two pie charts illustrate the propotion of International providers in Lebanon and Arab Emirate in 2018.< br />
-Level 4 provide 63% of Internet in Lebanon and only 10.1% in AE.The maximum propotion of providers that provide Internet in the AE is 15.4%(GTT-Backbone).So we can say that there is equal distribution of providers in AE and a dominance distribution in Lebanon.
+The two pie charts illustrate the propotion of International providers in Lebanon and Arab Emirate in 2018.<br />
+Level 3 provide 63% of Internet in Lebanon and only 10.1% in AE.The maximum propotion of providers that provide Internet in the AE is 15.4%(GTT-Backbone).So we can say that there is equal distribution of providers in AE and a dominance distribution in Lebanon.
 
 
 
