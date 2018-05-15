@@ -22,7 +22,7 @@ idv4=[12459144,12459154,12459163,12599748,12599755,12599761,12599793]
 #AS-PATH de IR:
 #idv6=[12459071,12459080,12459089,12599688,12599694,12599700,12599712]
 #idv4=[12459145,12459155,12459164,12599749,12599756,12599762,12599794]
-result= requests.get('https://atlas.ripe.net/api/v2/measurements/{}/results/?&format=json'.format(idv6[3]))
+result= requests.get('https://atlas.ripe.net/api/v2/measurements/{}/results/?&format=json'.format(idv6[1]))
 response=json.loads(result.content.decode('utf-8'))
 my_result = Result.get(response[5])
 hop= my_result.hops
@@ -32,7 +32,8 @@ for k in hop:
     for j in packet:
         if (j.origin not in ip) and (j.origin != 'None'):
             ip.append(j.origin)
-    #print(ip)
+
+print(ip)
 
 path=[]
 for k in ip:

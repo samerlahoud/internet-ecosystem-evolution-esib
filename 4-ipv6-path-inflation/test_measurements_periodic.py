@@ -63,6 +63,7 @@ for i,j in zip(vector_ID_v6,vector_ID_v4):
       
       resultv6 = 'https://atlas.ripe.net/api/v2/measurements/{}/results/?format=json'.format(i)
       responsev6= requests.get(resultv6)
+      print(responsev6)
       resultv4 = 'https://atlas.ripe.net/api/v2/measurements/{}/results/?format=json'.format(j)
       responsev4= requests.get(resultv4)
       if responsev6.status_code == 200:

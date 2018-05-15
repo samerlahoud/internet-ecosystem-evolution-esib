@@ -40,7 +40,7 @@ for k in ip:
     j=requests.get("https://api.iptoasn.com/v1/as/ip/{}".format(k))
     if j.status_code == 200:
         r=json.loads(j.content.decode('utf-8'))
-        print(r)
+        #print(r)
         if r['announced']:
             l=r['as_number']
             if l not in AS:
