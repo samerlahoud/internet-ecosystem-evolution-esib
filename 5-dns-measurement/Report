@@ -1,0 +1,21 @@
+DNS Measurements
+The purpose of the project is to measure DNS resolution times in Lebanon, the MENOG region and Europe.
+To achieve this goal, the work was divided to 4 tasks (excluding research):
+- Task 1: Get the IP addresses of the authoritative DNS servers of the concerned regions.
+- Task 2: Get the top local visited websites per country.
+- Task 3: Query each IP of each server for the country's websites.
+- Task 4: Calculate statistics based on the results and analyze the output.
+The project was developed using python3 and ubuntu 17.
+Let's details each task at a time:
+Task 1:
+To get the IP addresses of each servers, I used the command "whois -h whois.iana.org <ccTLD> | grep nserver". The output of this command contained the IP addresses of the server, and the task was then automated via a python script (mywhois.py)
+Task 2: 
+To get quicker results when searching for the top websites, a python script was developed (myscroller.py), which get the top local websites of each country from alexa.com and stored in batch files per country.
+Task 3:
+After getting those websites, I just had to query each server about its country's websites. The output I was looking for was only the time it took the DNS to resolve a website regardless of the machine or the internet speed. Which is why the command used was "time dig @<serverIP> -f batch file". The output of this command was both the resolution time (Query time) and RTT (real). So, every query time was then noted onto separate files.
+Task 4:
+Once I got the times, the last step was to calculate some statistics. Using python3 and boxplot, a script was developed (dmeasure.py) taking as argument a ccTLD and drawing the statistics chart including mean and standard deviation.
+At first, I thought that time dig was returning only the resolution time on the DNS’s side. After comparing a few script results with manual ones, and capturing a few packets on Wireshark, it turned out to be RTT. A way to work around it was to subtract ping time before every query.
+Doing the test at home, I would always get the test on all IPs smaller than on the first one, at first, I thought it was normal; maybe the server was aware of my query and replying from others cache. But while doing manual tests, the values were significantly close! That’s when I realized either my ISP or my home router could override my queries and reply from its own cache. And since at the faculty that issue wasn’t there, I would now run my scripts there to be able to compare different results of the same DNS server.
+Now that the idea is clear, all that’s left is a bit of result analysis. After analyzing the results for Lebanon, the average times were in an increasing order. And after getting the geolocation of every DNS (Lebanon, Sweden, USA, New Zealand), the result was location dependent. The smallest average time was around 25 milliseconds, and the longest around 340 milliseconds. For almost every country, the results variated depending on which DNS I was querying. But the British server for example replied in almost equal time frames, since four of the seven servers were based in the USA.
+So, at the end, the results are location based, and the only way to get unbiased results, was the either run the tests close to each server, or to ping the server before each query and subtract that time from the query time returned by dig. This could be an improvement for the project since then the code could be run from anywhere to get any country’s results.
