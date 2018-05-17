@@ -4,7 +4,7 @@ import json
 import numpy
 import matplotlib.pyplot as plt
 from datetime import datetime
-from statistics import mean
+from statistics import mean,stdev
 import matplotlib.ticker as mticker
 
 vector_ID_v6 = []
@@ -98,6 +98,8 @@ for i in range(len(rtt_v6)):
       
 print(len(diff_hopes))
 print (len(diff_rtt))
+print(mean(diff_rtt))
+print(stdev(diff_rtt))
 date= datetime.now
 filename=date().strftime('%d%m%Y%H%M%S')+".png"
 
