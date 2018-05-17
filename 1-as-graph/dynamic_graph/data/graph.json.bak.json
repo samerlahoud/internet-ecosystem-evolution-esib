@@ -1,0 +1,437 @@
+{
+    "directed": false,
+    "multigraph": false,
+    "graph": {},
+    "nodes": [
+        {
+            "playcount": 2,
+            "parity": 1,
+            "katz": 0.13390553351077286,
+            "id": 0
+        },
+        {
+            "playcount": 11,
+            "parity": 0,
+            "katz": 0.30448798384319536,
+            "id": 1
+        },
+        {
+            "playcount": 5,
+            "parity": 0,
+            "katz": 0.20262193638146822,
+            "id": 2
+        },
+        {
+            "playcount": 3,
+            "parity": 0,
+            "katz": 0.14095278331451364,
+            "id": 3
+        },
+        {
+            "playcount": 1,
+            "parity": 0,
+            "katz": 0.12718124286921692,
+            "id": 4
+        },
+        {
+            "playcount": 7,
+            "parity": 0,
+            "katz": 0.23135506825582752,
+            "id": 5
+        },
+        {
+            "playcount": 7,
+            "parity": 0,
+            "katz": 0.24462219863570922,
+            "id": 6
+        },
+        {
+            "playcount": 4,
+            "parity": 1,
+            "katz": 0.1862274304582948,
+            "id": 7
+        },
+        {
+            "playcount": 3,
+            "parity": 0,
+            "katz": 0.14752283175292066,
+            "id": 8
+        },
+        {
+            "playcount": 1,
+            "parity": 0,
+            "katz": 0.11329138773782489,
+            "id": 9
+        },
+        {
+            "playcount": 5,
+            "parity": 0,
+            "katz": 0.1945990049394487,
+            "id": 10
+        },
+        {
+            "playcount": 2,
+            "parity": 1,
+            "katz": 0.13565639923030273,
+            "id": 11
+        },
+        {
+            "playcount": 3,
+            "parity": 0,
+            "katz": 0.16683804815314635,
+            "id": 12
+        },
+        {
+            "playcount": 4,
+            "parity": 1,
+            "katz": 0.18127645421039967,
+            "id": 13
+        },
+        {
+            "playcount": 6,
+            "parity": 1,
+            "katz": 0.21529177811477504,
+            "id": 14
+        },
+        {
+            "playcount": 5,
+            "parity": 0,
+            "katz": 0.1938939017847785,
+            "id": 15
+        },
+        {
+            "playcount": 5,
+            "parity": 0,
+            "katz": 0.1946405251030856,
+            "id": 16
+        },
+        {
+            "playcount": 3,
+            "parity": 0,
+            "katz": 0.15165929146987875,
+            "id": 17
+        },
+        {
+            "playcount": 2,
+            "parity": 1,
+            "katz": 0.13027023577774416,
+            "id": 18
+        },
+        {
+            "playcount": 6,
+            "parity": 1,
+            "katz": 0.20867147823700785,
+            "id": 19
+        },
+        {
+            "playcount": 4,
+            "parity": 1,
+            "katz": 0.1794534363459751,
+            "id": 20
+        },
+        {
+            "playcount": 6,
+            "parity": 1,
+            "katz": 0.20732059656429713,
+            "id": 21
+        },
+        {
+            "playcount": 4,
+            "parity": 1,
+            "katz": 0.1878868730736558,
+            "id": 22
+        },
+        {
+            "playcount": 3,
+            "parity": 0,
+            "katz": 0.16519730324452905,
+            "id": 23
+        },
+        {
+            "playcount": 4,
+            "parity": 1,
+            "katz": 0.16441023429720433,
+            "id": 24
+        },
+        {
+            "playcount": 3,
+            "parity": 0,
+            "katz": 0.1718459060097278,
+            "id": 25
+        },
+        {
+            "playcount": 2,
+            "parity": 1,
+            "katz": 0.13479612122765794,
+            "id": 26
+        },
+        {
+            "playcount": 5,
+            "parity": 0,
+            "katz": 0.19442505315602499,
+            "id": 27
+        },
+        {
+            "playcount": 4,
+            "parity": 1,
+            "katz": 0.17196525632004406,
+            "id": 28
+        },
+        {
+            "playcount": 4,
+            "parity": 1,
+            "katz": 0.16558930407643668,
+            "id": 29
+        }
+    ],
+    "links": [
+        {
+            "source": 0,
+            "target": 21
+        },
+        {
+            "source": 0,
+            "target": 24
+        },
+        {
+            "source": 1,
+            "target": 4
+        },
+        {
+            "source": 1,
+            "target": 6
+        },
+        {
+            "source": 1,
+            "target": 7
+        },
+        {
+            "source": 1,
+            "target": 12
+        },
+        {
+            "source": 1,
+            "target": 13
+        },
+        {
+            "source": 1,
+            "target": 14
+        },
+        {
+            "source": 1,
+            "target": 16
+        },
+        {
+            "source": 1,
+            "target": 21
+        },
+        {
+            "source": 1,
+            "target": 22
+        },
+        {
+            "source": 1,
+            "target": 25
+        },
+        {
+            "source": 1,
+            "target": 27
+        },
+        {
+            "source": 2,
+            "target": 5
+        },
+        {
+            "source": 2,
+            "target": 6
+        },
+        {
+            "source": 2,
+            "target": 10
+        },
+        {
+            "source": 2,
+            "target": 15
+        },
+        {
+            "source": 2,
+            "target": 27
+        },
+        {
+            "source": 3,
+            "target": 8
+        },
+        {
+            "source": 3,
+            "target": 18
+        },
+        {
+            "source": 3,
+            "target": 24
+        },
+        {
+            "source": 5,
+            "target": 6
+        },
+        {
+            "source": 5,
+            "target": 10
+        },
+        {
+            "source": 5,
+            "target": 20
+        },
+        {
+            "source": 5,
+            "target": 22
+        },
+        {
+            "source": 5,
+            "target": 23
+        },
+        {
+            "source": 5,
+            "target": 25
+        },
+        {
+            "source": 6,
+            "target": 10
+        },
+        {
+            "source": 6,
+            "target": 19
+        },
+        {
+            "source": 6,
+            "target": 23
+        },
+        {
+            "source": 6,
+            "target": 28
+        },
+        {
+            "source": 7,
+            "target": 13
+        },
+        {
+            "source": 7,
+            "target": 14
+        },
+        {
+            "source": 7,
+            "target": 15
+        },
+        {
+            "source": 8,
+            "target": 14
+        },
+        {
+            "source": 8,
+            "target": 17
+        },
+        {
+            "source": 9,
+            "target": 29
+        },
+        {
+            "source": 10,
+            "target": 11
+        },
+        {
+            "source": 10,
+            "target": 24
+        },
+        {
+            "source": 11,
+            "target": 16
+        },
+        {
+            "source": 12,
+            "target": 13
+        },
+        {
+            "source": 12,
+            "target": 14
+        },
+        {
+            "source": 13,
+            "target": 22
+        },
+        {
+            "source": 14,
+            "target": 19
+        },
+        {
+            "source": 14,
+            "target": 25
+        },
+        {
+            "source": 15,
+            "target": 16
+        },
+        {
+            "source": 15,
+            "target": 19
+        },
+        {
+            "source": 15,
+            "target": 20
+        },
+        {
+            "source": 16,
+            "target": 20
+        },
+        {
+            "source": 16,
+            "target": 29
+        },
+        {
+            "source": 17,
+            "target": 21
+        },
+        {
+            "source": 17,
+            "target": 27
+        },
+        {
+            "source": 18,
+            "target": 27
+        },
+        {
+            "source": 19,
+            "target": 23
+        },
+        {
+            "source": 19,
+            "target": 26
+        },
+        {
+            "source": 19,
+            "target": 29
+        },
+        {
+            "source": 20,
+            "target": 21
+        },
+        {
+            "source": 21,
+            "target": 24
+        },
+        {
+            "source": 21,
+            "target": 28
+        },
+        {
+            "source": 22,
+            "target": 27
+        },
+        {
+            "source": 26,
+            "target": 28
+        },
+        {
+            "source": 28,
+            "target": 29
+        }
+    ]
+}
