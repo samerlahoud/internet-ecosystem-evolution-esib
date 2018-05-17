@@ -9,7 +9,7 @@ r = open("ccTLD","a+")
 j = 0
 for line in codes:
 	j += 1
-	print(str(round((j*100/54),0)) + " % (" +(str(j) + " / 54)").rstrip(), end = "\r")
+	print(str(round((j*100/54),0)) + "% (" +(str(j) + "/54)").rstrip(), end = "\r")
 	f = open("my_tmp","a+")
 	deleteContent(f)
 	print(line.strip(), file = r)
