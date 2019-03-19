@@ -1,3 +1,7 @@
+#Read measurement from a local file
+#https://github.com/RIPE-NCC/ripe.atlas.sagan
+#Documentation can be found on https://ripe-atlas-sagan.readthedocs.io/en/latest/
+
 import json
 from ripe.atlas.sagan import PingResult
 

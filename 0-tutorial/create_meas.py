@@ -1,3 +1,7 @@
+#Create a measurement using Cousteau library
+#Documentation can be found on https://github.com/RIPE-NCC/ripe-atlas-cousteau
+#Cousteau tries to comply with https://atlas.ripe.net/docs/api/v2/manual/measurements/types/
+
 from datetime import datetime, timedelta
 from ripe.atlas.cousteau import (
   Ping,
@@ -6,8 +10,10 @@ from ripe.atlas.cousteau import (
   AtlasCreateRequest
 )
 
-ATLAS_API_KEY = "c378f9e4-6a66-4847-a228-46949edf64bf"
+#Use your API Key https://atlas.ripe.net/docs/keys/
+ATLAS_API_KEY = " "
 
+#IPv4 ping and traceroute towards speedtest server in Oman
 ping = Ping(af=4, target="speedtest.omantel.om", description="ping BH to OA")
 
 traceroute = Traceroute(
@@ -17,6 +23,7 @@ traceroute = Traceroute(
     protocol="ICMP",
 )
 
+#Source of measurement is a set of 3 probes in Bahrain
 source = AtlasSource(
     type="country",
     value="BH",
@@ -24,6 +31,7 @@ source = AtlasSource(
     tags={"include":["system-ipv4-works"]}
 )
 
+#Create the measurement
 atlas_request = AtlasCreateRequest(
     start_time=datetime.utcnow()+timedelta(seconds=60),
     key=ATLAS_API_KEY,
@@ -34,5 +42,6 @@ atlas_request = AtlasCreateRequest(
 
 (is_success, response) = atlas_request.create()
 
+#Print measurement IDs
 print(response)
 print(is_success)
